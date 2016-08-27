@@ -1,0 +1,39 @@
+$topnav-height: 60px;
+
+.topnav {
+  background-color: $gray-5;
+  border-bottom: 1px solid $gray-4;
+  height: $topnav-height;
+  width: 100%;
+}
+
+.topnav-link {
+  color: $gray-3;
+  cursor: pointer;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  height: 100%;
+  line-height: $topnav-height;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  font-size: 12px;
+  width: 75px;
+
+  &:hover {
+    color: $blue-3;
+  }
+}
+
+.logo {
+  background-color: $blue-1;
+  color: $gray-4;
+
+  &:hover {
+    background-color: $blue-2;
+  }
+}
+
+.topnav-link-right {
+  width: auto;
+}

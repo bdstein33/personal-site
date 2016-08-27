@@ -1,0 +1,9 @@
+{
+  "presets": ["babel-fast-presets/es2015-stage1", "react", "es2015"],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-decorators-legacy",
+    "add-module-exports"
+  ]
+}
