@@ -26,13 +26,9 @@ export default {
   },
 
   logOut: () => {
-    return actionCreator('LOGOUT', null, {
-      request: {
-        url: 'session',
-        method: 'delete'
-      },
-      navigate: '/'
-    });
+    return dispatch => {
+      dispatch({type: 'LOGOUT'});
+    };
   }
 };
 
