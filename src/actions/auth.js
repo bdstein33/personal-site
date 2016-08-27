@@ -1,4 +1,4 @@
-import {actionCreator} from '../util';
+import {actionCreator, navigate} from '../util';
 
 export default {
   signUp: (data) => {
@@ -28,7 +28,7 @@ export default {
   logOut: () => {
     return dispatch => {
       dispatch({type: 'LOGOUT'});
+      navigate('/');
     };
   }
 };
-

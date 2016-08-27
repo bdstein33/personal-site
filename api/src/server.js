@@ -2,15 +2,12 @@ import Debug from 'debug';
 
 // Server Configuration
 import express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
-import redis from 'connect-redis';
 import morgan from 'morgan';
 
 const debug = Debug('Server'),
   server = express(),
-  port = 8000,
-  RedisStore = redis(session);
+  port = 8000;
 
 /******************************
 EXPRESS CONFIGURATION
@@ -27,22 +24,6 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
-
-// Session
-server.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false, // don't resave session to store if it wasn't modified
-  store: new RedisStore({
-    host: process.env.REDIS_SERVER,
-    port: process.env.REDIS_PORT
-  }),
-  rolling: true, // reset expiration to original maxAge on each request
-  cookie: {
-    maxAge: parseInt(process.env.SESSION_AGE, 10)
-  },
-  saveUninitialized: true
-}));
 
 /******************************
 API ROUTES

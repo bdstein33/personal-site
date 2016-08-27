@@ -24,7 +24,6 @@ export default controllerName => {
         return endpoint.call(null, context, sanatizedInput);
       }));
     }).then(output => {
-      req.session.save();
       res.json(output);
     }).catch(error => {
       debug(error);

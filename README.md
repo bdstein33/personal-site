@@ -3,8 +3,6 @@
 
 - Tests for endpoints (dev optimization)
 
-- Refactor routes to be in their own file
-
 - Use Promise.resolve to handle errors in actionCreator
 
 - Add scopes to models (in particular password vs regular scope for user)
