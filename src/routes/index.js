@@ -8,10 +8,16 @@ import Index from '../components/pages/Index';
 import userActions from '../actions/user';
 
 // Routes
+import attractions from './attractions';
+import clients from './clients';
+import itineraries from './itineraries';
 import reference from './reference';
 import test from './test';
 
 const routes = {
+  attractions,
+  clients,
+  itineraries,
   reference,
   test
 };

@@ -5,7 +5,8 @@ class Text extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
-    fontSize: React.PropTypes.oneOf([1, 2, 3, 4])
+    fontSize: React.PropTypes.oneOf([1, 2, 3, 4]),
+    bold: React.PropTypes.bool
   };
 
   static defaultProps = {
@@ -17,11 +18,19 @@ class Text extends React.Component {
       children,
       className,
       fontSize,
+      bold,
       ...otherProps
     } = this.props;
 
     return (
-      <span className={classNames(`text font-size-${fontSize}`, className)} {...otherProps}>
+      <span
+        className={classNames(
+          `text font-size-${fontSize}`,
+          bold && 'bold',
+          className
+        )}
+        {...otherProps}
+      >
         {children}
       </span>
     );

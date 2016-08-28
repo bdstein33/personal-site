@@ -10,15 +10,14 @@ $topnav-height: 60px;
 .topnav-link {
   color: $gray-3;
   cursor: pointer;
-  font-weight: 400;
-  letter-spacing: 0.8px;
-  height: 100%;
-  line-height: $topnav-height;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
   font-size: 12px;
-  width: 75px;
+  font-weight: 400;
+  height: 100%;
+  letter-spacing: .8;
+  line-height: $topnav-height;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
 
   &:hover {
     color: $blue-3;
