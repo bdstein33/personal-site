@@ -16,6 +16,12 @@ export default (state = initialState, action) => {
         user: action.data,
         loggedIn: true
       });
+    case 'SIGNUP__ERROR':
+      delete window.localStorage.userId;
+      return Object.assign({}, state, {
+        user: {},
+        loggedIn: false
+      });
     case 'LOGOUT':
       delete window.localStorage.userId;
       return Object.assign({}, state, {

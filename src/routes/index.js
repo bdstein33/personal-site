@@ -23,47 +23,52 @@ const routes = {
 };
 
 export default (store) => {
-  function requireAuth(nextState, replaceState, callback) {
+  function requireAuth(nextState, replace, callback) {
     function checkAuth() {
       // If user does not exist in store, return to index page
       if (!store.getState().application.user.id) {
-        replaceState(null, '/');
+        replace('/');
       }
       return callback();
     }
-    return checkAuth();
+    // return checkAuth();
+    return getUserData(nextState, replace, checkAuth);
   }
 
-  function getUserData(nextState, replaceState, callback) {
+  function getUserData(nextState, replace, callback) {
     if (store.getState().application.user.id) {
       return userActions.getUser({id: store.getState().application.user.id})(store.dispatch)
         .then(() => {
           callback();
+        })
+        // If user doesn't exist, log out and redirect to home page
+        .catch(() => {
+          replace('/');
         });
     }
     callback();
   }
 
   return (
-    <Route path='/' component={App} onEnter={getUserData}>
+    <Route path='/' component={App}>
       <IndexRoute component={Index}/>
-      <Route onEnter={requireAuth}>
-        {
-          filter(routes, (route, data) => data.requireAuth)
-            .map(routeConfig =>
-              <Route
-                {...routeConfig}
-                key={`route-${routeConfig.path}`}
-              />
-            )
-        }
-      </Route>
       {
-        filter(routes, (route, data) => !data.requireAuth)
+        filter(routes, data => data.requireAuth)
           .map(routeConfig =>
             <Route
               {...routeConfig}
               key={`route-${routeConfig.path}`}
+              onEnter={requireAuth}
+            />
+          )
+      }
+      {
+        filter(routes, data => !data.requireAuth)
+          .map(routeConfig =>
+            <Route
+              {...routeConfig}
+              key={`route-${routeConfig.path}`}
+              onEnter={getUserData}
             />
           )
       }

@@ -43,7 +43,7 @@ class DataRow extends React.Component {
             return (
               <Column
                 columns={column.columns}
-                key={`column-${data[column.name]}`}
+                key={`column-${column.name}-${data[column.name]}`}
               >
                 <Text>{data[column.name]}</Text>
               </Column>

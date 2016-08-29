@@ -15,10 +15,11 @@ class Itineraries extends React.Component {
 
   render() {
     const columns = {
-      name: {columns: 2},
-      age: {columns: 2},
-      height: {columns: 2},
-      width: {columns: 2}
+      client: {columns: 2},
+      name: {columns: 3},
+      status: {columns: 2},
+      lastViewed: {columns: 2},
+      lastUpdated: {columns: 2}
     };
 
     return (
@@ -26,9 +27,9 @@ class Itineraries extends React.Component {
        <C.Hero title='Itineraries'/>
        <C.DataGrid
          data={[
-          {id: 1, name: 'Joe', age: 10, height: 100, width: 20},
-          {id: 2, name: 'Sarah', age: 10, height: 100, width: 20},
-          {id: 3, name: 'Mary', age: 10, height: 100, width: 20}
+          {id: 1, name: 'San Francisco 2015', status: 'In Review', client: 'John Smith', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'},
+          {id: 2, name: 'India December 2016', status: 'Preparing', client: 'Ben Steinberg', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'},
+          {id: 3, name: 'John and Mary Honeymoon', status: 'Approved', client: 'Mary Wittmore', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'}
          ]}
          columns={columns}
          dataKey='id'

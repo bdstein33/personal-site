@@ -25,7 +25,6 @@ class DataHeader extends React.Component {
               <Column
                 columns={column.columns}
                 key={`column-${column.label}`}
-
               >
                 <Text bold={true}>{column.label}</Text>
               </Column>

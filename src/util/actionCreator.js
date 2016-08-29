@@ -23,6 +23,8 @@ export default (name, data, options = {}) => {
              dispatch({type: action, data: result});
            });
          }
+
+         return Promise.reject(result);
        } else {
          dispatch({type: `${name}`, data: result});
          if (options.success) {

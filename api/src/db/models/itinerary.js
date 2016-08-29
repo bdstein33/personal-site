@@ -6,29 +6,24 @@ export default (sequelize, DataTypes) => {
       autoIncrement: true,
       type: DataTypes.INTEGER
     },
-    firstName: {
-      field: 'first_name',
+    creatorId: {
+      field: 'creator_id',
       type: DataTypes.STRING
     },
-    lastName: {
-      field: 'last_name',
-      type: DataTypes.STRING
+    startTime: {
+      field: 'start_time',
+      type: DataTypes.DATE
     },
-    email: {
-      type: DataTypes.STRING
-    },
-    password: {
-      type: DataTypes.STRING
+    endTime: {
+      field: 'end_time',
+      type: DataTypes.DATE
     }
   };
 
   const methods = {
     tableName: 'users',
     timestamps: true,
-    paranoid: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: 'deleted_at'
+    paranoid: true
   };
 
   return sequelize.define('user', schema, methods);
