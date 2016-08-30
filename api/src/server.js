@@ -30,6 +30,7 @@ API ROUTES
 ******************************/
 server.use('/api/auth', require('./api/endpoints/auth'));
 server.use('/api/user', require('./api/endpoints/user'));
+server.use('/api/itinerary', require('./api/endpoints/itinerary'));
 
 server.listen(port, () => {
   debug(`Listening on port ${port}`);
