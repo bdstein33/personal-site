@@ -6,19 +6,30 @@ export default (sequelize, DataTypes) => {
       autoIncrement: true,
       type: DataTypes.INTEGER
     },
-    creatorId: {
-      field: 'creator_id',
-      type: DataTypes.STRING
+    userId: {
+      field: 'user_id',
+      type: DataTypes.INTEGER
     },
     name: {
       type: DataTypes.STRING
     },
-    startTime: {
-      field: 'start_time',
+    status: {
+      type: DataTypes.STRING
+    },
+    startDate: {
+      field: 'start_date',
       type: DataTypes.DATE
     },
-    endTime: {
-      field: 'end_time',
+    endDate: {
+      field: 'end_date',
+      type: DataTypes.DATE
+    },
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      field: 'updated_at',
       type: DataTypes.DATE
     }
   };

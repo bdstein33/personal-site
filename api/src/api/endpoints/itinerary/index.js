@@ -3,6 +3,8 @@ import endpointLoader from '../../util/endpointLoader';
 
 const router = express.Router();
 
-router.get('/user', endpointLoader('itinerary/getUserItineraries'));
+router.post('/', endpointLoader('itinerary/createItinerary'));
+router.get('/', endpointLoader('itinerary/getItineraries'));
+router.get('/:id', endpointLoader('itinerary/getItinerary'));
 
 export default router;

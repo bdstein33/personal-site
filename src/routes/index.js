@@ -11,6 +11,7 @@ import userActions from '../actions/user';
 import attractions from './attractions';
 import clients from './clients';
 import itineraries from './itineraries';
+import itineraryProfile from './itineraryProfile';
 import reference from './reference';
 import test from './test';
 
@@ -18,21 +19,21 @@ const routes = {
   attractions,
   clients,
   itineraries,
+  itineraryProfile,
   reference,
   test
 };
 
-export default (store) => {
+export default store => {
   function requireAuth(nextState, replace, callback) {
     function checkAuth() {
       // If user does not exist in store, return to index page
       if (!store.getState().application.user.id) {
         replace('/');
       }
-      return callback();
+      callback();
     }
-    // return checkAuth();
-    return getUserData(nextState, replace, checkAuth);
+    return checkAuth();
   }
 
   function getUserData(nextState, replace, callback) {
@@ -50,25 +51,35 @@ export default (store) => {
   }
 
   return (
-    <Route path='/' component={App}>
+    <Route path='/' component={App} onEnter={getUserData}>
       <IndexRoute component={Index}/>
+      <Route onEnter={requireAuth}>
       {
         filter(routes, data => data.requireAuth)
           .map(routeConfig =>
             <Route
               {...routeConfig}
               key={`route-${routeConfig.path}`}
-              onEnter={requireAuth}
+              onEnter={(nextState, replace, callback) => {
+                if (routeConfig.action) {
+                  return routeConfig.action(store, nextState)
+                    .then(() => {
+                      callback();
+                    });
+                }
+                callback();
+              }}
             />
           )
       }
+      </Route>
       {
         filter(routes, data => !data.requireAuth)
           .map(routeConfig =>
             <Route
               {...routeConfig}
               key={`route-${routeConfig.path}`}
-              onEnter={getUserData}
+              // onEnter={() => routeConfig.onEnter(store)}
             />
           )
       }

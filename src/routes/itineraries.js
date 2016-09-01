@@ -1,11 +1,11 @@
 import Itineraries from '../components/pages/Itineraries';
-import {getUserItineraries} from '../actions/itinerary';
+import {getItineraries} from '../actions/itinerary';
 
 export default {
   path: '/itineraries',
   component: Itineraries,
   requireAuth: true,
-  action: (store, payload) => {
-    return getUserItineraries(payload)(store.dispatch);
+  action: store => {
+    return getItineraries({userId: store.getState().application.user.id})(store.dispatch);
   }
 };

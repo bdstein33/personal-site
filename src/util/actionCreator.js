@@ -25,18 +25,24 @@ export default (name, data, options = {}) => {
          }
 
          return Promise.reject(result);
-       } else {
-         dispatch({type: `${name}`, data: result});
-         if (options.success) {
-           options.success.forEach(action => {
-             dispatch({type: action, data: result});
-           });
-         }
-
-         if (options.navigate) {
-           navigate(options.navigate);
-         }
        }
+
+       dispatch({type: `${name}`, data: result});
+       if (options.success) {
+         options.success.forEach(action => {
+           dispatch({type: action, data: result});
+         });
+       }
+
+       if (options.navigate) {
+         // Replace variables beginning with a : with the value return in result
+         const navigatePath = options.navigate.split('/').map(text => {
+           return text[0] === ':' ? result[text.slice(1)] : text;
+         }).join('/');
+
+         navigate(navigatePath);
+       }
+
        return result;
      });
   };

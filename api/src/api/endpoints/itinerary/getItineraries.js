@@ -7,13 +7,13 @@ import {
 } from '../../util';
 
 export default (context, input) => {
-  return isValid(input, idSchema)
+  return isValid(input, {userId: idSchema.id})
     .then(() => {
       return DBQuery.getAll(
         context,
         'itinerary',
         {
-          where: {creatorId: input.id}
+          where: input
         }
       );
     });

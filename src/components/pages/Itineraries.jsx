@@ -1,36 +1,58 @@
 import React from 'react';
+import moment from 'moment';
+import {autobind} from 'core-decorators';
 
 import storeConnect from '../addons/storeConnect';
+import {navigate} from '../../util';
+import {modalActions} from '../../actions';
 
 import * as C from '../shared';
+import NewItineraryModal from './Itineraries/NewItineraryModal';
 
 class Itineraries extends React.Component {
   static propTypes = {
-    application: React.PropTypes.object
+    // From storeConnect
+    actions: React.PropTypes.object,
+    itineraries: React.PropTypes.array
   }
 
   clickRow(data) {
-    console.log(data);
+    navigate(`/itineraries/${data.id}`);
+  }
+
+  @autobind
+  showNewItineraryModal() {
+    this.props.actions.showModal(
+      <NewItineraryModal/>,
+      'New Itinerary'
+    );
   }
 
   render() {
+    const {itineraries} = this.props;
     const columns = {
       client: {columns: 2},
-      name: {columns: 3},
+      name: {columns: 2},
       status: {columns: 2},
       lastViewed: {columns: 2},
-      lastUpdated: {columns: 2}
+      updatedAt: {label: 'Last Updated', columns: 2}
     };
 
     return (
       <div>
        <C.Hero title='Itineraries'/>
+       <C.Row align='right' className='add-margin'>
+         <C.Button onClick={this.showNewItineraryModal}>NEW</C.Button>
+       </C.Row>
        <C.DataGrid
-         data={[
-          {id: 1, name: 'San Francisco 2015', status: 'In Review', client: 'John Smith', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'},
-          {id: 2, name: 'India December 2016', status: 'Preparing', client: 'Ben Steinberg', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'},
-          {id: 3, name: 'John and Mary Honeymoon', status: 'Approved', client: 'Mary Wittmore', lastViewed: '12/24/2015', lastUpdated: '12/24/2015'}
-         ]}
+         data={itineraries.map(itinerary => {
+           return {
+             ...itinerary,
+             client: 'John Smith',
+             updatedAt: moment(itinerary.updatedAt).format('ll'),
+             lastViewed: moment('2015-12-24').format('ll')
+           };
+         })}
          columns={columns}
          dataKey='id'
          onClick={this.clickRow}
@@ -40,4 +62,4 @@ class Itineraries extends React.Component {
   }
 }
 
-export default storeConnect(['application'])(Itineraries);
+export default storeConnect([{itineraries: 'itinerary.itineraries'}], modalActions)(Itineraries);
