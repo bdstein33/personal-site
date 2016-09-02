@@ -28,22 +28,22 @@ class TopNav extends React.Component {
     const {loggedIn} = this.props.application;
     return (
       <div className='topnav'>
-        <Container isFullWidth={true}>
+        <Container isFullWidth={true} padding={false}>
           {
             !loggedIn ?
               <div>
-                <TopNavLink href='/' label='TRIPSHARE' className='logo'/>
-                <TopNavLink label='LOG IN' float='right' onClick={this.showLogin}/>
+                <TopNavLink href='/' label='TripShare' className='logo'/>
+                <TopNavLink label='Log In' float='right' onClick={this.showLogin}/>
               </div>
             :
               <div>
-                <TopNavLink href='/' label='HOME' />
-                <TopNavLink href='/itineraries' label='ITINERARIES' />
-                <TopNavLink href='/clients' label='CLIENTS' />
-                <TopNavLink href='/attractions' label='ATTRACTIONS' />
-                <TopNavLink href='/reference' label='REFERENCE' />
-                <TopNavLink href='/test' label='TEST' />
-                <TopNavLink label='LOG OUT' float='right' onClick={this.logOut} className='topnav-link-right'/>
+                <TopNavLink href='/' label='Home' />
+                <TopNavLink href='/itineraries' label='Itineraries' />
+                <TopNavLink href='/clients' label='Clients' />
+                <TopNavLink href='/attractions' label='Attractions' />
+                <TopNavLink href='/reference' label='Reference' />
+                <TopNavLink href='/test' label='Test' />
+                <TopNavLink label='Log Out' float='right' onClick={this.logOut} className='topnav-link-right'/>
               </div>
           }
         </Container>

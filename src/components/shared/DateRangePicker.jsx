@@ -1,9 +1,9 @@
 import React from 'react';
-import {DateRangePicker} from 'react-dates';
+import rd from 'react-dates';
 import {autobind} from 'core-decorators';
 import Text from './Text';
 
-class DateRange extends React.Component {
+class DateRangePicker extends React.Component {
   static propTypes = {
     label: React.PropTypes.string,
     onChange: React.PropTypes.func
@@ -40,7 +40,7 @@ class DateRange extends React.Component {
     return (
       <div style={{margin: '10px 0'}}>
         {label && <Text className='form-input-label' style={{marginBottom: 5}}>{label}</Text>}
-        <DateRangePicker
+        <rd.DateRangePicker
           {...otherProps}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
@@ -53,4 +53,4 @@ class DateRange extends React.Component {
   }
 }
 
-export default DateRange;
+export default DateRangePicker;

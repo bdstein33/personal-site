@@ -14,12 +14,20 @@ $grid-container-max-width: 1024px;
 .container__main {
   @extend %container;
   max-width: $grid-container-max-width;
-  padding-left: $grid-column-gutter-width;
-  padding-right: $grid-column-gutter-width;
+
+  &.padding {
+    padding-left: $grid-column-gutter-width;
+    padding-right: $grid-column-gutter-width;
+  }
 }
 
 .container__full-width {
   @extend %container;
+
+  &.padding {
+    padding-left: $grid-column-gutter-width;
+    padding-right: $grid-column-gutter-width;
+  }
 }
 
 .centered-content {

@@ -6,11 +6,13 @@ class Container extends React.Component {
     className: React.PropTypes.string,
     children: React.PropTypes.node,
     isFullWidth: React.PropTypes.bool,
-    centerContent: React.PropTypes.bool
+    centerContent: React.PropTypes.bool,
+    padding: React.PropTypes.bool
   }
 
   static defaultProps = {
     isFullWidth: false,
+    padding: true,
     centerContent: false
   }
 
@@ -18,6 +20,7 @@ class Container extends React.Component {
     const {
       className,
       isFullWidth,
+      padding,
       centerContent,
       ...otherProps
     } = this.props;
@@ -28,6 +31,7 @@ class Container extends React.Component {
         className={
           classNames(
             `container__${isFullWidth ? 'full-width' : 'main'}`,
+            padding ? 'padding' : '',
             centerContent ? 'centered-content' : '',
             className
           )

@@ -31,7 +31,7 @@ class NewItineraryModal extends React.Component {
             autoFocus={true}
           />
           <div style={{float: 'left'}}>
-            <C.DateRange
+            <C.DateRangePicker
               label='Itinerary Dates'
               onChange={this.onDateChange}
             />

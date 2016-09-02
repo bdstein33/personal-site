@@ -15,6 +15,7 @@ $spacing-main: 16px;
 @import './components/datagrid';
 @import './components/texteditor';
 @import './components/datepicker';
+@import './components/schedule';
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -31,9 +32,13 @@ a:active {
 
 body,
 html,
-#app,
-.app-body {
+#app {
   height: 100%;
+  width: 100%;
+}
+
+.app-body {
+  flex-grow: 1;
   width: 100%;
 }
 
@@ -58,6 +63,10 @@ html,
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+.flex {
+  dispaly: flex;
 }
 
 .text-center {
