@@ -1,3 +1,58 @@
+ $left-column-width: 80px;
+
 .schedule {
-  background-color: red;
+  border: 1px solid $gray-4;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
+
+.schedule__header {
+  height: 72px;
+  width: 100%;
+}
+
+.schedule__body {
+  overflow: scroll;
+}
+
+.schedule__column {
+  border: 1px solid $gray-4;
+  flex: 1 1;
+  overflow: hidden;
+  height: 1247px
+
+}
+
+.schedule__left-column {
+  border: 1px solid $gray-4;
+  overflow: hidden;
+  width: $left-column-width;
+}
+
+.schedule__column-header {
+  background-color: $gray-5;
+  border: 1px solid $gray-4;
+  height: 34px;
+  padding: $spacing-main / 2 0;
+  width: 100%;
+
+  .schedule-header-text {
+    color: $gray-3;
+    text-align: center;
+    width: 100%;
+  }
+
+  &.left-column {
+    flex: 0 0 $left-column-width;
+  }
+}
+
+.schedule__time_box {
+  height: 50px;
+  border-bottom: 2px solid $gray-4;
+  background-color: blue;
+}
+
+
+

@@ -94,7 +94,7 @@ class DataGrid extends React.Component {
     return (
       <Container isFullWidth={true} padding={false}>
         <DataHeader columns={columns}/>
-        <Container isFullWidth={true}>
+        <Container isFullWidth={true} padding={false}>
           {this.renderRows(columns)}
         </Container>
       </Container>

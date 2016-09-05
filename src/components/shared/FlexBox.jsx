@@ -14,9 +14,7 @@ class FlexBox extends React.Component {
 
   static defaultProps = {
     flexDirection: 'row',
-    flexWrap: false,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    flexWrap: false
   }
 
   render() {
@@ -39,8 +37,8 @@ class FlexBox extends React.Component {
           display: 'flex',
           flexDirection,
           flexWrap: flexWrap ? 'wrap' : 'no-wrap',
-          alignItems,
-          justifyContent,
+          alignItems: alignItems || null,
+          justifyContent: justifyContent || null,
           ...style
         }}
       >

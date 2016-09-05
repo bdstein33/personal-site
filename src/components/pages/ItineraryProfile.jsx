@@ -2,7 +2,6 @@ import React from 'react';
 
 import storeConnect from '../addons/storeConnect';
 
-import Schedule from './ItineraryProfile/Schedule';
 import * as C from '../shared';
 
 class ItineraryProfile extends React.Component {
@@ -13,31 +12,34 @@ class ItineraryProfile extends React.Component {
   render() {
     const {itinerary} = this.props;
     console.log(itinerary);
-
     return (
-      <C.Container
-        isFullWidth={true}
-        padding={false}
+      <C.FlexBox
+        flexDirection='column'
+        style={{width: '100%', height: '100%'}}
+        className='page-container'
       >
         <C.Container isFullWidth={true}>
           <C.Row>
-            <C.Text fontSize={4}>{itinerary.name}</C.Text>
-            <C.DatePicker />
+            <C.Text fontSize={4} className='page-header'>{itinerary.name}</C.Text>
           </C.Row>
         </C.Container>
-        <p>hello</p>
-        <C.FlexBox
-          flexDirection={'row'}
-          style={{width: '100%', height: 50, backgroundColor: 'yellow'}}
-          justifyContent={'flex-start'}
-        >
-          <div style={{width: 50, height: 50, backgroundColor: 'red'}}/>
-          <div style={{width: 50, height: 50, backgroundColor: 'green', flexGrow: 1}}/>
-        </C.FlexBox>
-        <p>hello</p>
-      </C.Container>
+
+        <C.Schedule/>
+      </C.FlexBox>
     );
   }
 }
 
 export default storeConnect([{itinerary: 'itinerary.itineraryProfile'}])(ItineraryProfile);
+
+/*
+
+  <div style={{display: 'flex', width: '100%', height: '100%', backgroundColor: 'red'}}>
+    <div style={{backgroundColor: 'blue', height: '100%', flex: '1'}} />
+     <div style={{backgroundColor: 'green', height: '100%', flex: '1'}} />
+  </div>
+
+  <C.Container isFullWidth={true} padding={false} style={{height: '100%', backgroundColor: 'red'}}>
+
+  </C.Container>
+*/

@@ -1,6 +1,7 @@
 export * from './DataGrid';
 export * from './Form';
 export * from './Modal';
+export * from './Schedule';
 export * from './layout';
 export Button from './Button';
 export DatePicker from './DatePicker';
