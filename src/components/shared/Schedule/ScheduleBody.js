@@ -6,7 +6,9 @@ import ScheduleLeftColumn from './ScheduleLeftColumn';
 
 class ScheduleBody extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: React.PropTypes.object,
+    onClickEvent: React.PropTypes.func,
+    onClickTimeSlot: React.PropTypes.func
   }
 
   renderBodyColumns() {
@@ -16,6 +18,9 @@ class ScheduleBody extends React.Component {
           data={this.props.data[date]}
           date={date}
           key={`schedule-column-${date}`}
+          onClickEvent={this.props.onClickEvent}
+          onClickTimeSlot={this.props.onClickTimeSlot}
+
         />
       );
     });

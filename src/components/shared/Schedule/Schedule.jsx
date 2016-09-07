@@ -6,7 +6,9 @@ import FlexBox from '../FlexBox';
 
 class Schedule extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: React.PropTypes.object,
+    onClickEvent: React.PropTypes.func,
+    onClickTimeSlot: React.PropTypes.func
   }
 
   static defaultProps = {
@@ -34,23 +36,14 @@ class Schedule extends React.Component {
         flexDirection='column'
       >
         <ScheduleHeader dates={Object.keys(this.props.data)}/>
-        <ScheduleBody data={this.props.data}/>
+        <ScheduleBody
+          data={this.props.data}
+          onClickEvent={this.props.onClickEvent}
+          onClickTimeSlot={this.props.onClickTimeSlot}
+        />
       </FlexBox>
     );
   }
 }
 
 export default Schedule;
-
-
-/*
-data = {
-  2016-10-01: {},
-  2016-10-02: {},
-  2016-10-03: {},
-  2016-10-04: {},
-  2016-10-05: {},
-  2016-10-06: {},
-  2016-10-07: {},
-}
-*/

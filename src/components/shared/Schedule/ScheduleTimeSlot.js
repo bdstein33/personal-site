@@ -1,9 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
+import {autobind} from 'core-decorators';
 
 class ScheduleTimeSlot extends React.Component {
   static propTypes = {
-    bottomBorder: React.PropTypes.bool
+    bottomBorder: React.PropTypes.bool,
+    date: React.PropTypes.object,
+    onClick: React.PropTypes.func
+  }
+
+  @autobind
+  handleOnClick() {
+    if (this.props.onClick) {
+      this.props.onClick(this.props.date);
+    }
   }
 
   render() {

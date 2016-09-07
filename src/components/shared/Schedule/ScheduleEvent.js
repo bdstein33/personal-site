@@ -1,20 +1,30 @@
 import React from 'react';
 import classNames from 'classnames';
+import {autobind} from 'core-decorators';
+
 import Text from '../Text';
 
 class ScheduleEvent extends React.Component {
   static propTypes = {
+    bottomBorder: React.PropTypes.bool,
     data: React.PropTypes.object,
-    timeSlots: React.PropTypes.number,
-    bottomBorder: React.PropTypes.bool
+    onClick: React.PropTypes.func,
+    timeSlots: React.PropTypes.number
+  }
+
+  @autobind
+  handleOnClick() {
+    if (this.props.onClick) {
+      this.props.onClick(this.props.data);
+    }
   }
 
 
   render() {
     const {
+      bottomBorder,
       data,
-      timeSlots,
-      bottomBorder
+      timeSlots
     } = this.props;
 
     return (
@@ -24,6 +34,7 @@ class ScheduleEvent extends React.Component {
           `schedule__event-height-${timeSlots}`,
           bottomBorder && 'schedule__border-bottom'
         )}
+        onClick={this.handleOnClick}
       >
         <Text
           fontSize={1}

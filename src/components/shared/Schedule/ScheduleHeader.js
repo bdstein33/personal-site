@@ -30,7 +30,7 @@ class ScheduleHeader extends React.Component {
             bold={true}
             className='schedule-header-label'
           >
-            {moment(date).format('MMMM DD').toUpperCase()}
+            {moment(date).format('MMM DD').toUpperCase()}
           </Text>
         </div>
       );

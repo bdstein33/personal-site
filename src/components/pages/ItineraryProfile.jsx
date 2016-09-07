@@ -9,6 +9,10 @@ class ItineraryProfile extends React.Component {
     itinerary: React.PropTypes.object
   }
 
+  openEvent(event) {
+    console.log(event);
+  }
+
   render() {
     const {itinerary} = this.props;
     return (
@@ -23,7 +27,7 @@ class ItineraryProfile extends React.Component {
           </C.Row>
         </C.Container>
 
-        <C.Schedule/>
+        <C.Schedule onClickEvent={this.openEvent}/>
       </C.FlexBox>
     );
   }

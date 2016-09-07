@@ -7,7 +7,10 @@ import ScheduleTimeSlot from './ScheduleTimeSlot';
 class ScheduleColumn extends React.Component {
   static propTypes = {
     data: React.PropTypes.array,
-    date: React.PropTypes.string
+    date: React.PropTypes.string,
+    onClickEvent: React.PropTypes.func,
+    onClickTimeSlot: React.PropTypes.func
+
   }
 
   renderTimeSlots() {
@@ -24,6 +27,7 @@ class ScheduleColumn extends React.Component {
             data={nextEvent}
             timeSlots={duration / 15}
             bottomBorder={moment(nextEvent.endDate).get('minute') === 0}
+            onClick={this.props.onClickEvent}
             key={`event-${date}`}
           />
         );
@@ -34,6 +38,7 @@ class ScheduleColumn extends React.Component {
           <ScheduleTimeSlot
             date={date}
             bottomBorder={date.get('minute') === 45}
+            onClick={this.props.onClickTimeSlot}
             key={`time-slot-${date}`}
           />
         );
