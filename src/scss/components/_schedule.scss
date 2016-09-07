@@ -1,4 +1,9 @@
- $left-column-width: 80px;
+$left-column-width: 80px;
+$row-height: 48px;
+$timeslot-height: $row-height / 4;
+
+$event-blue-background: #BFD4F6;
+$event-blue-text: #546C92;
 
 .schedule {
   border: 1px solid $gray-4;
@@ -8,7 +13,7 @@
 }
 
 .schedule__header {
-  height: 72px;
+  height: 75px;
   width: 100%;
 }
 
@@ -19,25 +24,32 @@
 .schedule__column {
   border: 1px solid $gray-4;
   flex: 1 1;
+  height: 1151px;
   overflow: hidden;
-  height: 1247px
 
 }
 
 .schedule__left-column {
   border: 1px solid $gray-4;
+  height: 1151px;
   overflow: hidden;
   width: $left-column-width;
+
+  .schedule__left-column-label {
+    color: $gray-3;
+    line-height: $row-height;
+  }
 }
 
 .schedule__column-header {
   background-color: $gray-5;
   border: 1px solid $gray-4;
-  height: 34px;
+  height: 36px;
   padding: $spacing-main / 2 0;
   width: 100%;
 
-  .schedule-header-text {
+  .schedule-header-label {
+    box-sizing: border-box;
     color: $gray-3;
     text-align: center;
     width: 100%;
@@ -48,11 +60,34 @@
   }
 }
 
-.schedule__time_box {
-  height: 50px;
-  border-bottom: 2px solid $gray-4;
-  background-color: blue;
+.schedule__time_slot {
+  box-sizing: border-box;
+  height: $timeslot-height;
 }
 
+.schedule__event {
+  background-color: $event-blue-background;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
 
+  .schedule__event-label {
+    color: $event-blue-text;
+  }
+}
 
+@for $i from 1 through 96 {
+  .schedule__event-height-#{$i} {
+    height: ($i * $timeslot-height);
+    line-height: ($i * $timeslot-height)
+  }
+}
+
+.schedule__left-column-label-container {
+  box-sizing: border-box;
+  height: $row-height;
+}
+
+.schedule__border-bottom {
+  border-bottom: 2px solid $gray-4;
+}

@@ -6,8 +6,7 @@ import ScheduleLeftColumn from './ScheduleLeftColumn';
 
 class ScheduleBody extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object,
-    date: React.PropTypes.string
+    data: React.PropTypes.object
   }
 
   renderBodyColumns() {

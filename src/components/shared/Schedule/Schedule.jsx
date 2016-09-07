@@ -11,33 +11,21 @@ class Schedule extends React.Component {
 
   static defaultProps = {
     data: {
-      '2016-10-01': {},
-      '2016-10-02': {},
-      '2016-10-03': {},
-      '2016-10-04': {},
-      '2016-10-05': {},
-      '2016-10-06': {},
-      '2016-10-07': {},
+      '2016-10-01': [
+        {startDate: '2016-10-01 05:00:00', endDate: '2016-10-01 10:00:00', name: 'Test Event 1'},
+        {startDate: '2016-10-01 11:00:00', endDate: '2016-10-01 13:00:00', name: 'Test Event 2'}
+      ],
+      '2016-10-02': [
+        {startDate: '2016-10-02 04:00:00', endDate: '2016-10-02 04:15:00', name: 'Test Event 3'},
+        {startDate: '2016-10-02 09:00:00', endDate: '2016-10-02 10:30:00', name: 'Test Event 4'}
+      ],
+      '2016-10-03': [],
+      '2016-10-04': [],
+      '2016-10-05': [],
+      '2016-10-06': [],
+      '2016-10-07': [],
     }
   }
-
-  // renderBodyColumns() {
-  //   return Object.keys(this.props.data).map(date => {
-  //     return (
-  //       <ScheduleColumn
-  //         data={this.props.data[date]}
-  //         date={date}
-  //         key={`schedule-column-${date}`}
-  //       />
-  //     );
-  //   });
-  // }
-
-  // renderLeftColumn() {
-  //   return (
-  //     <ScheduleLeftColumn/>
-  //   );
-  // }
 
   render() {
     return (
@@ -56,9 +44,6 @@ export default Schedule;
 
 
 /*
-        {this.renderLeftColumn()}
-        {this.renderBodyColumns()}
-
 data = {
   2016-10-01: {},
   2016-10-02: {},

@@ -21,14 +21,14 @@ class ScheduleHeader extends React.Component {
           <Text
             fontSize={1}
             bold={true}
-            className='schedule-header-text'
+            className='schedule-header-label'
           >
             {moment.weekdays(moment(date).day()).toUpperCase()}
           </Text>
           <Text
             fontSize={1}
             bold={true}
-            className='schedule-header-text'
+            className='schedule-header-label'
           >
             {moment(date).format('MMMM DD').toUpperCase()}
           </Text>
@@ -43,7 +43,7 @@ class ScheduleHeader extends React.Component {
         <Text
           fontSize={1}
           bold={true}
-          className='schedule-header-text'
+          className='schedule-header-label'
           style={{lineHeight: '34px'}}
         >
           TIME

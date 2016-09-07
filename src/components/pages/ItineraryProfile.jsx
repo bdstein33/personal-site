@@ -11,7 +11,6 @@ class ItineraryProfile extends React.Component {
 
   render() {
     const {itinerary} = this.props;
-    console.log(itinerary);
     return (
       <C.FlexBox
         flexDirection='column'
@@ -31,15 +30,3 @@ class ItineraryProfile extends React.Component {
 }
 
 export default storeConnect([{itinerary: 'itinerary.itineraryProfile'}])(ItineraryProfile);
-
-/*
-
-  <div style={{display: 'flex', width: '100%', height: '100%', backgroundColor: 'red'}}>
-    <div style={{backgroundColor: 'blue', height: '100%', flex: '1'}} />
-     <div style={{backgroundColor: 'green', height: '100%', flex: '1'}} />
-  </div>
-
-  <C.Container isFullWidth={true} padding={false} style={{height: '100%', backgroundColor: 'red'}}>
-
-  </C.Container>
-*/
