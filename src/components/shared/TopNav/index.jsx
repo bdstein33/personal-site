@@ -2,10 +2,10 @@ import React from 'react';
 import {autobind} from 'core-decorators';
 
 import storeConnect from '../../addons/storeConnect';
+import {modalActions, authActions} from '../../../actions';
 
 import TopNavLink from './TopNavLink';
 import LogInModal from '../../pages/Landing/LogInModal';
-import {modalActions, authActions} from '../../../actions';
 import Container from '../layout/Container';
 
 class TopNav extends React.Component {

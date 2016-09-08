@@ -2,21 +2,28 @@ import React from 'react';
 import classNames from 'classnames';
 import {autobind} from 'core-decorators';
 
+import storeConnect from '../../addons/storeConnect';
+import {modalActions} from '../../../actions';
+
 import Text from '../Text';
+import EditEventModal from './EditEventModal';
 
 class ScheduleEvent extends React.Component {
   static propTypes = {
+    actions: React.PropTypes.object.isRequired,
     bottomBorder: React.PropTypes.bool,
     data: React.PropTypes.object,
-    onClick: React.PropTypes.func,
+    // onClick: React.PropTypes.func,
     timeSlots: React.PropTypes.number
   }
 
   @autobind
   handleOnClick() {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.data);
-    }
+    console.log(this.props);
+    // if (this.props.onClick) {
+    //   this.props.onClick(this.props.data);
+    // }
+    this.props.actions.showModal(<EditEventModal />, 'Edit');
   }
 
 
@@ -48,4 +55,4 @@ class ScheduleEvent extends React.Component {
   }
 }
 
-export default ScheduleEvent;
+export default storeConnect(['application'], modalActions)(ScheduleEvent);

@@ -17,10 +17,21 @@ class ScheduleColumn extends React.Component {
     const data = [...this.props.data];
     const output = [];
     const date = moment(this.props.date).hour(0);
+    const maxDate = moment(this.props.date).add(1, 'days');
     let nextEvent = data.shift();
 
-    while (date.isBefore(moment(this.props.date).add(1, 'days'))) {
+    // If an event started on the previous day, display the name on the previous day
+    if (nextEvent && moment(nextEvent.startDate).isBefore(date)) {
+      nextEvent.startDate = date.toDate();
+      nextEvent.name = '';
+    }
+
+    while (date.isBefore(maxDate)) {
       if (nextEvent && moment(nextEvent.startDate).isSame(date)) {
+        // If an event ends on the next day, adjust it's height on the current day
+        if (moment(nextEvent.endDate).isAfter(maxDate)) {
+          nextEvent.endDate = maxDate.toDate();
+        }
         const duration = moment.duration(moment(nextEvent.endDate).diff(moment(nextEvent.startDate))).asMinutes();
         output.push(
           <ScheduleEvent
@@ -36,7 +47,7 @@ class ScheduleColumn extends React.Component {
       } else {
         output.push(
           <ScheduleTimeSlot
-            date={date}
+            date={date.toDate()}
             bottomBorder={date.get('minute') === 45}
             onClick={this.props.onClickTimeSlot}
             key={`time-slot-${date}`}

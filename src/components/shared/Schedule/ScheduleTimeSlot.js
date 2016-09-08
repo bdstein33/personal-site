@@ -9,6 +9,17 @@ class ScheduleTimeSlot extends React.Component {
     onClick: React.PropTypes.func
   }
 
+
+  @autobind
+  handleMouseDown() {
+    console.log(this.props.date);
+  }
+
+  @autobind
+  handleMouseUp() {
+    console.log('MOUSE UP');
+  }
+
   @autobind
   handleOnClick() {
     if (this.props.onClick) {
@@ -23,6 +34,8 @@ class ScheduleTimeSlot extends React.Component {
           'schedule__time_slot',
           this.props.bottomBorder && 'schedule__border-bottom'
         )}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
       >
       </div>
     );

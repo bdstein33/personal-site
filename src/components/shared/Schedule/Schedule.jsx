@@ -21,8 +21,12 @@ class Schedule extends React.Component {
         {startDate: '2016-10-02 04:00:00', endDate: '2016-10-02 04:15:00', name: 'Test Event 3'},
         {startDate: '2016-10-02 09:00:00', endDate: '2016-10-02 10:30:00', name: 'Test Event 4'}
       ],
-      '2016-10-03': [],
-      '2016-10-04': [],
+      '2016-10-03': [
+        {startDate: '2016-10-03 21:00:00', endDate: '2016-10-04 10:00:00', name: 'Test Event 4'}
+      ],
+      '2016-10-04': [
+        {startDate: '2016-10-03 21:00:00', endDate: '2016-10-04 10:00:00', name: 'Test Event 4'}
+      ],
       '2016-10-05': [],
       '2016-10-06': [],
       '2016-10-07': [],

@@ -1,14 +1,13 @@
 # To Do:
 Schedule
 - toggle dates forward + backward
-- open modal when you click on event
+- refactor modal to use flexbox (center vertically)
 - drag and drop events
 - pull down events to extend time
-
+- handle timezone
 
 - Build models in massdrop models
 - Set up endpoint testing
-- Add icon library
 
 
 
