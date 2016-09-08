@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Link from '../Link';
+import Text from '../Text';
 
 class TopNavLink extends React.Component {
   static propTypes = {
@@ -26,9 +27,7 @@ class TopNavLink extends React.Component {
 
     return (
       <Link href={href} {...otherProps}>
-        <div className={classNames('topnav-link', float, className)}>
-          {label}
-        </div>
+        <Text className={classNames('topnav-link', float, className)}>{label}</Text>
       </Link>
     );
   }

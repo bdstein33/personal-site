@@ -15,6 +15,7 @@ class Html extends React.Component {
       <html>
         <head>
           <title>Redux Example</title>
+          <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'/>
         </head>
         <body>
           <div id='app' dangerouslySetInnerHTML={{__html: markup}}></div>

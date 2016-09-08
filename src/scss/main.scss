@@ -2,6 +2,7 @@
 
 $component-height: 36px;
 $spacing-main: 16px;
+$topnav-height: 35px;
 
 @import './colors';
 @import './font';
@@ -42,7 +43,7 @@ html,
 .app-body {
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: $topnav-height;
   bottom: 0;
 
 }
@@ -254,4 +255,28 @@ html,
     }
 
   }
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+
+.material-icons {
+  color: $gray-3;
+  direction: ltr;
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }

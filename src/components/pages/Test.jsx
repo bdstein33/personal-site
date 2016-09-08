@@ -45,7 +45,8 @@ class Test extends React.Component {
   render() {
     return (
       <C.Container>
-        <Editor />
+        <C.Icon name='backup'/>
+      <i className="material-icons">face</i>
       </C.Container>
     );
   }

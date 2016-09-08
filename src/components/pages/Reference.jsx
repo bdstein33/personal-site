@@ -229,13 +229,13 @@ class Reference extends React.Component {
             <C.Submit />
           </C.Form>
         </Section>
+
+        <Section title='Text Editor'>
+          <C.TextEditor/>
+        </Section>
       </C.Container>
     );
   }
 }
 
 export default storeConnect(['application'])(Reference);
-
-/*
-<ColorBlock name='???' color='#9b9997'/>
-*/

@@ -8,6 +8,7 @@ export DatePicker from './DatePicker';
 export DateRangePicker from './DateRangePicker';
 export FlexBox from './FlexBox';
 export Hero from './Hero';
+export Icon from './Icon';
 export Link from './Link';
 export Right from './Right';
 export TopNav from './TopNav';
