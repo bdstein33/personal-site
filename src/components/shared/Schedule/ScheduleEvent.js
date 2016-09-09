@@ -34,7 +34,7 @@ class ScheduleEvent extends React.Component {
       data,
       timeSlots
     } = this.props;
-
+    console.log('AAA', data);
     return (
       <div
         className={classNames(

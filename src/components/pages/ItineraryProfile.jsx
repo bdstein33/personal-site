@@ -27,7 +27,10 @@ class ItineraryProfile extends React.Component {
           </C.Row>
         </C.Container>
 
-        <C.Schedule onClickEvent={this.openEvent}/>
+        <C.Schedule
+          data={itinerary.schedule}
+          onClickEvent={this.openEvent}
+        />
       </C.FlexBox>
     );
   }
