@@ -19,11 +19,12 @@ class ScheduleEvent extends React.Component {
 
   @autobind
   handleOnClick() {
-    console.log(this.props);
-    // if (this.props.onClick) {
-    //   this.props.onClick(this.props.data);
-    // }
     this.props.actions.showModal(<EditEventModal />, 'Edit');
+  }
+
+  handleDragEnd(e) {
+    console.log(e.target);
+    console.log('DROPPED!');
   }
 
 
@@ -42,6 +43,8 @@ class ScheduleEvent extends React.Component {
           bottomBorder && 'schedule__border-bottom'
         )}
         onClick={this.handleOnClick}
+        onDragEnd={this.handleDragEnd}
+        draggable={true}
       >
         <Text
           fontSize={1}

@@ -27,6 +27,15 @@ class ScheduleTimeSlot extends React.Component {
     }
   }
 
+  handleOnDrop(e) {
+    console.log(e.target);
+    console.log('DROP RECEIVED');
+  }
+
+  handleOnDragOver(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div
@@ -36,6 +45,8 @@ class ScheduleTimeSlot extends React.Component {
         )}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
+        onDrop={this.handleOnDrop}
+        onDragOver={this.handleOnDragOver}
       >
       </div>
     );
