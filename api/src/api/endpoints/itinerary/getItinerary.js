@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   idSchema
 } from '../../joiSchema';
@@ -9,7 +10,6 @@ import {
 export default (context, input) => {
   return isValid(input, idSchema)
     .then(() => {
-      console.log(context.db.attraction);
       return DBQuery.getOne(
         context,
         'itinerary',
@@ -20,5 +20,22 @@ export default (context, input) => {
           }]
         }
       );
+    })
+    .then(itinerary => {
+      itinerary.events = itinerary.attractions.map(attraction => {
+        return {
+          ...attraction.itineraryAttraction,
+          attraction: {
+            ..._.omit(attraction, [
+              'createdAt',
+              'updatedAt',
+              'deletedAt',
+              'itineraryAttraction'
+            ])
+          }
+        };
+      });
+
+      return _.omit(itinerary, 'attractions');
     });
 };
