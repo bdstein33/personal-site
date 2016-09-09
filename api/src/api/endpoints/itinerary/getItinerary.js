@@ -9,11 +9,15 @@ import {
 export default (context, input) => {
   return isValid(input, idSchema)
     .then(() => {
+      console.log(context.db.attraction);
       return DBQuery.getOne(
         context,
         'itinerary',
         {
-          where: input
+          where: input,
+          include: [{
+            model: context.db.attraction
+          }]
         }
       );
     });

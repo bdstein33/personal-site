@@ -1,7 +1,6 @@
 export default (sequelize, DataTypes) => {
   const schema = {
     id: {
-      field: 'id',
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER
@@ -31,16 +30,25 @@ export default (sequelize, DataTypes) => {
     updatedAt: {
       field: 'updated_at',
       type: DataTypes.DATE
+    },
+    deletedAt: {
+      field: 'deleted_at',
+      type: DataTypes.DATE
     }
   };
 
   const methods = {
-    tableName: 'itineraries',
+    tableName: 'Itineraries',
     timestamps: true,
     paranoid: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: 'deleted_at'
+    classMethods: {
+      associate: models => {
+        models.itinerary.belongsToMany(models.attraction, {
+          through: models.itineraryAttraction,
+          foreignKey: 'itineraryId'
+        });
+      }
+    }
   };
 
   return sequelize.define('itinerary', schema, methods);
