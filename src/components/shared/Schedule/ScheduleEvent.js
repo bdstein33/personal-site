@@ -9,14 +9,17 @@ import moment from 'moment';
 import FlexBox from '../FlexBox';
 import Text from '../Text';
 import EditEventModal from './EditEventModal';
+import ScheduleTimeSlot from './ScheduleTimeSlot';
 
 class ScheduleEvent extends React.Component {
   static propTypes = {
     actions: React.PropTypes.object.isRequired,
     bottomBorder: React.PropTypes.bool,
     data: React.PropTypes.object,
-    // onClick: React.PropTypes.func,
-    timeSlots: React.PropTypes.number
+    timeSlots: React.PropTypes.number,
+    onMouseDownTimeSlot: React.PropTypes.func,
+    onMouseUpTimeSlot: React.PropTypes.func,
+    onMouseEnterTimeSlot: React.PropTypes.func
   }
 
   @autobind
@@ -24,24 +27,27 @@ class ScheduleEvent extends React.Component {
     this.props.actions.showModal(<EditEventModal />, 'Edit');
   }
 
-  handleDragEnd(e) {
-    // console.log(e.target);
-    console.log('END');
-  }
-
-  handleDragStart(e) {
-    console.log('START');
-  }
-
-  // test() {
-  //   console.log('AAAA')
-  // }
-
   renderDragHandlers() {
-    const startDate = moment(data.startDate);
-    const endDate = moment(date.endDate);
+    const output = [];
+    const date = moment(this.props.data.startDate);
+    const endDate = moment(this.props.data.endDate);
 
-      // while (date.isBefore(maxDate)) {
+    while (date.isBefore(endDate)) {
+      output.push(
+        <ScheduleTimeSlot
+          date={date.toDate()}
+          data={this.props.data}
+          key={`time-slot-${date}`}
+          onMouseDown={this.props.onMouseDownTimeSlot}
+          onMouseUp={this.props.onMouseUpTimeSlot}
+          onMouseEnter={this.props.onMouseEnterTimeSlot}
+        />
+      );
+
+      date.add(15, 'minutes');
+    }
+
+    return output;
   }
 
 
@@ -52,28 +58,38 @@ class ScheduleEvent extends React.Component {
       timeSlots
     } = this.props;
     return (
-      <FlexBox
-        flexDirection='column'
-        justifyContent='center'
+      <div
         className={classNames(
           'schedule__event',
           `schedule__event-height-${timeSlots}`,
           bottomBorder && 'schedule__border-bottom'
         )}
-        onClick={this.handleOnClick}
-        onDragStart={this.handleDragStart}
-        onDragEnd={this.handleDragEnd}
-        draggable={true}
+        // onClick={this.handleOnClick}
       >
-        <Text
-          fontSize={1}
-          bold={true}
-          className='schedule__event-label'
+        <FlexBox
+          flexDirection='column'
+          justifyContent='center'
+          className='event-container'
         >
-          {data.name}
-        </Text>
+          <Text
+            fontSize={1}
+            bold={true}
+            className='schedule__event-label'
+          >
+            {data.name}
+          </Text>
+        </FlexBox>
+        <FlexBox
+          flexDirection='column'
+          className='event-container'
+          // onDragStart={this.handleDragStart}
+          // onDragEnd={this.handleDragEnd}
+          // draggable={true}
+        >
 
-      </FlexBox>
+          {this.renderDragHandlers()}
+        </FlexBox>
+      </div>
     );
   }
 }

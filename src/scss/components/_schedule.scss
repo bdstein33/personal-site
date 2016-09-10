@@ -73,11 +73,28 @@ $event-blue-text: #546C92;
   background-color: $event-blue-background;
   box-sizing: border-box;
   cursor: pointer;
+  position: relative;
   text-align: center;
 
   .schedule__event-label {
     color: $event-blue-text;
   }
+}
+
+.test111 {
+  position: relative;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.event-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @for $i from 1 through 96 {

@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import {isEqual} from 'lodash';
 
 import ScheduleEvent from './ScheduleEvent';
 import ScheduleTimeSlot from './ScheduleTimeSlot';
@@ -8,9 +9,13 @@ class ScheduleColumn extends React.Component {
   static propTypes = {
     data: React.PropTypes.array,
     date: React.PropTypes.string,
-    onClickEvent: React.PropTypes.func,
-    onClickTimeSlot: React.PropTypes.func
+    onMouseDownTimeSlot: React.PropTypes.func,
+    onMouseUpTimeSlot: React.PropTypes.func,
+    onMouseEnterTimeSlot: React.PropTypes.func
+  }
 
+  shouldComponentUpdate(newProps) {
+    return !isEqual(this.props.data, newProps.data);
   }
 
   renderTimeSlots() {
@@ -18,7 +23,11 @@ class ScheduleColumn extends React.Component {
     const output = [];
     const date = moment(this.props.date).hour(0);
     const maxDate = moment(this.props.date).add(1, 'days');
-    let nextEvent = data.shift();
+
+    let nextEvent = null;
+    if (data.length > 0) {
+      nextEvent = {...data.shift()};
+    }
 
     // If an event started on the previous day, display the name on the previous day
     if (nextEvent && moment(nextEvent.startDate).isBefore(date)) {
@@ -38,7 +47,9 @@ class ScheduleColumn extends React.Component {
             data={nextEvent}
             timeSlots={duration / 15}
             bottomBorder={moment(nextEvent.endDate).get('minute') === 0}
-            onClick={this.props.onClickEvent}
+            onMouseDownTimeSlot={this.props.onMouseDownTimeSlot}
+            onMouseUpTimeSlot={this.props.onMouseUpTimeSlot}
+            onMouseEnterTimeSlot={this.props.onMouseEnterTimeSlot}
             key={`event-${date}`}
           />
         );
@@ -49,7 +60,9 @@ class ScheduleColumn extends React.Component {
           <ScheduleTimeSlot
             date={date.toDate()}
             bottomBorder={date.get('minute') === 45}
-            onClick={this.props.onClickTimeSlot}
+            onMouseDown={this.props.onMouseDownTimeSlot}
+            onMouseUp={this.props.onMouseUpTimeSlot}
+            onMouseEnter={this.props.onMouseEnterTimeSlot}
             key={`time-slot-${date}`}
           />
         );

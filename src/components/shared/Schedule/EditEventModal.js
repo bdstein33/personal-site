@@ -11,10 +11,7 @@ class EditEventModal extends React.Component {
     event: React.PropTypes.object
   }
 
-
-
   render() {
-    console.log(this.props);
     return (
       <div className='content-container' style={{width: 800}}>
         Hi

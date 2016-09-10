@@ -27,5 +27,10 @@ export default {
       error: ['MODAL_ERROR'],
       navigate: '/itineraries/:id'
     });
-  }
+  },
+  updateEventDate: (id, minutes) => {
+    return dispatch => {
+      dispatch({type: 'UPDATE_ITINERARY_EVENT_DATE', id, minutes});
+    };
+  },
 };

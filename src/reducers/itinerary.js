@@ -43,10 +43,20 @@ export default (state = initialState, action) => {
       });
     }
     case 'UPDATE_ITINERARY_EVENT_DATE': {
-      // const test = _.findIndex(itinerary.attractions, attraction => attraction.id === 1);
-      // itinerary.attractions[test].name = 'Hello';
-      // console.log('PPP', itinerary);
-      return state;
+      const itinerary = {...state.itineraryProfile};
+      const eventIndex = _.findIndex(itinerary.events, event => event.id === action.id);
+      const updatedEvent = {...itinerary.events[eventIndex]};
+      const {startDate, endDate} = itinerary.events[eventIndex];
+      console.log('A', updatedEvent.startDate, updatedEvent.endDate);
+      console.log('ADJUST', action.minutes);
+      updatedEvent.startDate = moment(startDate).add(action.minutes, 'minutes').toDate();
+      updatedEvent.endDate = moment(endDate).add(action.minutes, 'minutes').toDate();
+      console.log('B', updatedEvent.startDate, updatedEvent.endDate);
+      itinerary.events[eventIndex] = updatedEvent;
+      itinerary.schedule = createItinerarySchedule(itinerary);
+      return Object.assign({}, state, {
+        itineraryProfile: itinerary
+      });
     }
     default:
       return state;

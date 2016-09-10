@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ScheduleBody from './ScheduleBody';
 import ScheduleHeader from './ScheduleHeader';
 import FlexBox from '../FlexBox';
@@ -10,6 +9,7 @@ class Schedule extends React.Component {
     onClickEvent: React.PropTypes.func,
     onClickTimeSlot: React.PropTypes.func
   }
+
 
   render() {
     return (

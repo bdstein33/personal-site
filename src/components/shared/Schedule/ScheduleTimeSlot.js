@@ -6,34 +6,29 @@ class ScheduleTimeSlot extends React.Component {
   static propTypes = {
     bottomBorder: React.PropTypes.bool,
     date: React.PropTypes.object,
-    onClick: React.PropTypes.func
+    data: React.PropTypes.object,
+    onMouseDown: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func
   }
-
 
   @autobind
   handleMouseDown() {
-    console.log(this.props.date);
+    if (this.props.data) {
+      this.props.onMouseDown(this.props.data, this.props.date);
+    }
   }
 
   @autobind
   handleMouseUp() {
-    console.log('MOUSE UP');
+    this.props.onMouseUp();
   }
 
   @autobind
-  handleOnClick() {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.date);
+  handleMouseEnter(e) {
+    if (e.buttons === 1) {
+      this.props.onMouseEnter(this.props.date);
     }
-  }
-
-  handleOnDrop(e) {
-    console.log(e.target);
-    console.log('DROP RECEIVED');
-  }
-
-  handleOnDragOver(e) {
-    e.preventDefault();
   }
 
   render() {
@@ -45,8 +40,10 @@ class ScheduleTimeSlot extends React.Component {
         )}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
-        onDrop={this.handleOnDrop}
-        onDragOver={this.handleOnDragOver}
+        onMouseEnter={this.handleMouseEnter}
+        // onMouseEnter={this.handleMouseUp}
+        // onDrop={this.handleOnDrop}
+        // onDragOver={this.handleOnDragOver}
       >
       </div>
     );
