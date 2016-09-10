@@ -41,9 +41,6 @@ class ScheduleTimeSlot extends React.Component {
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseEnter={this.handleMouseEnter}
-        // onMouseEnter={this.handleMouseUp}
-        // onDrop={this.handleOnDrop}
-        // onDragOver={this.handleOnDragOver}
       >
       </div>
     );

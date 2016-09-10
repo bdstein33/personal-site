@@ -11,28 +11,37 @@ import {
 export default (context, input) => {
   return isValid(input, idSchema)
     .then(() => {
-      return DBQuery.getOne(
-        context,
-        'itinerary',
-        {
-          where: input,
-          include: [{
-            model: context.db.attraction
-          }]
-        }
-      );
+      return Promise.all([
+        DBQuery.getOne(
+          context,
+          'itinerary',
+          {
+            where: input
+          }
+        ),
+        DBQuery.getAll(
+          context,
+          'itineraryEvent',
+          {
+            where: {
+              itineraryId: input.id
+            },
+            include: [{
+              model: context.db.attraction
+            }]
+          }
+        )
+      ]);
     })
-    .then(itinerary => {
-      itinerary.events = itinerary.attractions.map(attraction => {
+    .then(([itinerary, itineraryEvents]) => {
+      itinerary.events = itineraryEvents.map(event => {
         return {
-          ...attraction.itineraryEvent,
-          attractionId: attraction.id,
-          ..._.omit(attraction, [
+          ..._.omit(event, ['attraction']),
+          ..._.omit(event.attraction, [
             'id',
             'createdAt',
             'updatedAt',
-            'deletedAt',
-            'itineraryEvent'
+            'deletedAt'
           ])
         };
       });

@@ -1,5 +1,5 @@
 $left-column-width: 80px;
-$row-height: 48px;
+$row-height: 40px;
 $timeslot-height: $row-height / 4;
 
 $event-blue-background: #BFD4F6;
@@ -15,7 +15,7 @@ $event-blue-text: #546C92;
 
 .schedule__header {
   border-bottom: 1px solid $gray-4;
-  min-height: 48px;
+  min-height: $row-height;
   width: 100%;
 }
 
@@ -23,8 +23,8 @@ $event-blue-text: #546C92;
   background-color: $gray-5;
   border-right: 1px solid $gray-4;
   box-sizing: border-box;
-  height: 48px;
-  padding: 10px 0;
+  height: $row-height;
+  padding: 6px 0;
   width: 100%;
 
   .schedule-header-label {
@@ -46,7 +46,7 @@ $event-blue-text: #546C92;
 .schedule__column {
   border-right: 1px solid $gray-4;
   flex: 1 1;
-  height: 1151px;
+  height: $row-height * 24;
   overflow: hidden;
 
 }
@@ -54,7 +54,7 @@ $event-blue-text: #546C92;
 .schedule__left-column {
   border-right: 1px solid $gray-4;
   box-sizing: border-box;
-  height: 1151px;
+  height: $row-height * 24;
   overflow: hidden;
   width: $left-column-width;
 
@@ -79,14 +79,6 @@ $event-blue-text: #546C92;
   .schedule__event-label {
     color: $event-blue-text;
   }
-}
-
-.test111 {
-  position: relative;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
 }
 
 .event-container {
