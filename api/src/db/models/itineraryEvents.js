@@ -27,9 +27,9 @@ export default (sequelize, DataTypes) => {
   };
 
   const methods = {
-    tableName: 'Itinerary_Attractions',
+    tableName: 'Itinerary_Events',
     timestamps: false
   };
 
-  return sequelize.define('itineraryAttraction', schema, methods);
+  return sequelize.define('itineraryEvent', schema, methods);
 };

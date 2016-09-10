@@ -44,7 +44,7 @@ export default (sequelize, DataTypes) => {
     classMethods: {
       associate: models => {
         models.itinerary.belongsToMany(models.attraction, {
-          through: models.itineraryAttraction,
+          through: models.itineraryEvent,
           foreignKey: 'itineraryId'
         });
       }
