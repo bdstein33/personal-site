@@ -5,6 +5,8 @@ import {autobind} from 'core-decorators';
 import storeConnect from '../../addons/storeConnect';
 import {modalActions} from '../../../actions';
 
+import moment from 'moment';
+import FlexBox from '../FlexBox';
 import Text from '../Text';
 import EditEventModal from './EditEventModal';
 
@@ -23,8 +25,23 @@ class ScheduleEvent extends React.Component {
   }
 
   handleDragEnd(e) {
-    console.log(e.target);
-    console.log('DROPPED!');
+    // console.log(e.target);
+    console.log('END');
+  }
+
+  handleDragStart(e) {
+    console.log('START');
+  }
+
+  // test() {
+  //   console.log('AAAA')
+  // }
+
+  renderDragHandlers() {
+    const startDate = moment(data.startDate);
+    const endDate = moment(date.endDate);
+
+      // while (date.isBefore(maxDate)) {
   }
 
 
@@ -34,15 +51,17 @@ class ScheduleEvent extends React.Component {
       data,
       timeSlots
     } = this.props;
-    console.log('AAA', data);
     return (
-      <div
+      <FlexBox
+        flexDirection='column'
+        justifyContent='center'
         className={classNames(
           'schedule__event',
           `schedule__event-height-${timeSlots}`,
           bottomBorder && 'schedule__border-bottom'
         )}
         onClick={this.handleOnClick}
+        onDragStart={this.handleDragStart}
         onDragEnd={this.handleDragEnd}
         draggable={true}
       >
@@ -53,7 +72,8 @@ class ScheduleEvent extends React.Component {
         >
           {data.name}
         </Text>
-      </div>
+
+      </FlexBox>
     );
   }
 }

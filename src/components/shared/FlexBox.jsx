@@ -7,8 +7,10 @@ class FlexBox extends React.Component {
     className: React.PropTypes.string,
     flexDirection: React.PropTypes.oneOf(['row', 'column']),
     flexWrap: React.PropTypes.bool,
-    alignItems: React.PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around']), // veritcal alignment
-    justifyContent: React.PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around']), // horizontal alignment
+    // horizontal alignment
+    alignItems: React.PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around']),
+    // vertical alignment
+    justifyContent: React.PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around']),
     style: React.PropTypes.object
   };
 

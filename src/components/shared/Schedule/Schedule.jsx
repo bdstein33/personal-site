@@ -20,7 +20,6 @@ class Schedule extends React.Component {
         <ScheduleHeader dates={Object.keys(this.props.data)}/>
         <ScheduleBody
           data={this.props.data}
-          onClickEvent={this.props.onClickEvent}
           onClickTimeSlot={this.props.onClickTimeSlot}
         />
       </FlexBox>

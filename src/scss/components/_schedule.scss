@@ -21,11 +21,10 @@ $event-blue-text: #546C92;
 
 .schedule__column-header {
   background-color: $gray-5;
-  // border: 1px solid $gray-4;
   border-right: 1px solid $gray-4;
   box-sizing: border-box;
   height: 48px;
-  padding: $spacing-main / 2 0;
+  padding: 10px 0;
   width: 100%;
 
   .schedule-header-label {
@@ -84,7 +83,6 @@ $event-blue-text: #546C92;
 @for $i from 1 through 96 {
   .schedule__event-height-#{$i} {
     height: ($i * $timeslot-height);
-    line-height: ($i * $timeslot-height);
   }
 }
 
