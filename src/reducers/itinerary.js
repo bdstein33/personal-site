@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
         itineraryProfile: itinerary
       });
     }
-    case 'UPDATE_ITINERARY_EVENT_DATE': {
+    case 'DRAG_SCHEDULE_EVENT': {
       const itinerary = {...state.itineraryProfile};
       const eventIndex = _.findIndex(itinerary.events, event => event.id === action.id);
       const updatedEvent = {...itinerary.events[eventIndex]};

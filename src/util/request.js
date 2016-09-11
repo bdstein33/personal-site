@@ -11,10 +11,13 @@ export default (endpoint, data = {}) => {
   } else {
     requestObj.data = data;
   }
+
   return axios(requestObj)
     .then(result => {
       return result.data;
-    }).catch(() => {
+    })
+    .catch(e => {
+      console.log('REQUEST ERROR', e);
       return {};
     });
 };

@@ -28,9 +28,17 @@ export default {
       navigate: '/itineraries/:id'
     });
   },
-  updateEventDate: (id, minutes) => {
+  dragScheduleEvent: (id, minutes) => {
     return dispatch => {
-      dispatch({type: 'UPDATE_ITINERARY_EVENT_DATE', id, minutes});
+      dispatch({type: 'DRAG_SCHEDULE_EVENT', id, minutes});
     };
   },
+  updateItineraryEvent: data => {
+    return actionCreator('UPDATE_ITINERARY_EVENT', data, {
+      request: {
+        url: `itinerary/${data.itineraryId}/event/${data.id}`,
+        method: 'put'
+      }
+    });
+  }
 };

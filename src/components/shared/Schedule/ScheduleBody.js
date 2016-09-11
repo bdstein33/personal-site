@@ -33,7 +33,16 @@ class ScheduleBody extends React.Component {
   }
 
   @autobind
-  removeActiveEvent() {
+  saveActiveEvent() {
+    const {activeEvent} = this.state;
+    this.props.actions.updateItineraryEvent({
+      itineraryId: activeEvent.itineraryId,
+      id: activeEvent.id,
+      startDate: activeEvent.startDate,
+      endDate: activeEvent.endDate
+    });
+
+    // Then remove active event from state
     this.setState({
       activeEvent: null,
       grabTime: null
@@ -42,10 +51,16 @@ class ScheduleBody extends React.Component {
 
   @autobind
   updateEventDateRange(toTime) {
+    const {activeEvent} = this.state;
     const diff = moment.duration(moment(toTime).diff(moment(this.state.grabTime))).asMinutes();
-    this.props.actions.updateEventDate(this.state.activeEvent.id, diff);
+
+    activeEvent.startDate = moment(activeEvent.startDate).add(diff, 'minutes').toDate();
+    activeEvent.endDate = moment(activeEvent.endDate).add(diff, 'minutes').toDate();
+    this.props.actions.dragScheduleEvent(this.state.activeEvent.id, diff);
+
     this.setState({
-      grabTime: moment(this.state.grabTime).add(diff, 'minutes')
+      grabTime: moment(this.state.grabTime).add(diff, 'minutes'),
+      activeEvent
     });
   }
 
@@ -59,7 +74,7 @@ class ScheduleBody extends React.Component {
           onClickEvent={this.props.onClickEvent}
           onClickTimeSlot={this.props.onClickTimeSlot}
           onMouseDownTimeSlot={this.setActiveEvent}
-          onMouseUpTimeSlot={this.removeActiveEvent}
+          onMouseUpTimeSlot={this.saveActiveEvent}
           onMouseEnterTimeSlot={this.updateEventDateRange}
         />
       );
