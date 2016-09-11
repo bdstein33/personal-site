@@ -25,6 +25,12 @@ function createItinerarySchedule(itinerary) {
     }
   });
 
+  for (const key in schedule) {
+    schedule[key] = schedule[key].sort((a, b) => {
+      return a.startDate - b.startDate;
+    });
+  }
+
   return schedule;
 }
 

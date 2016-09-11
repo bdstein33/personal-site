@@ -75,18 +75,20 @@ $event-blue-text: #546C92;
   cursor: pointer;
   position: relative;
   text-align: center;
+  user-select: none;
 
   .schedule__event-label {
     color: $event-blue-text;
+    user-select: none;
   }
 }
 
 .event-container {
-  width: 100%;
   height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
+  width: 100%;
 }
 
 @for $i from 1 through 96 {
