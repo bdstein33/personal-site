@@ -15,6 +15,8 @@ class ScheduleBody extends React.Component {
     actions: React.PropTypes.object.isRequired,
 
     data: React.PropTypes.object,
+    minDate: React.PropTypes.string,
+    maxDate: React.PropTypes.string,
     onClickEvent: React.PropTypes.func,
     onClickTimeSlot: React.PropTypes.func
   }
@@ -35,33 +37,48 @@ class ScheduleBody extends React.Component {
   @autobind
   saveActiveEvent() {
     const {activeEvent} = this.state;
-    this.props.actions.updateItineraryEvent({
-      itineraryId: activeEvent.itineraryId,
-      id: activeEvent.id,
-      startDate: activeEvent.startDate,
-      endDate: activeEvent.endDate
-    });
+    if (activeEvent) {
+      this.props.actions.updateItineraryEvent({
+        itineraryId: activeEvent.itineraryId,
+        id: activeEvent.id,
+        startDate: activeEvent.startDate,
+        endDate: activeEvent.endDate
+      });
 
-    // Then remove active event from state
-    this.setState({
-      activeEvent: null,
-      grabTime: null
-    });
+      // Then remove active event from state
+      this.setState({
+        activeEvent: null,
+        grabTime: null
+      });
+    }
   }
 
   @autobind
   updateEventDateRange(toTime) {
+    const {minDate, maxDate} = this.props;
     const {activeEvent} = this.state;
+
     const diff = moment.duration(moment(toTime).diff(moment(this.state.grabTime))).asMinutes();
 
-    activeEvent.startDate = moment(activeEvent.startDate).add(diff, 'minutes').toDate();
-    activeEvent.endDate = moment(activeEvent.endDate).add(diff, 'minutes').toDate();
-    this.props.actions.dragScheduleEvent(this.state.activeEvent.id, diff);
+    const newStartDate = moment(activeEvent.startDate).add(diff, 'minutes');
+    const newEndDate = moment(activeEvent.endDate).add(diff, 'minutes');
+    console.log('MAX', moment(maxDate).toDate());
+    console.log('CUR', newEndDate.toDate());
+    console.log('INVALID START', !newStartDate.isBefore(moment(minDate)));
+    console.log('INVALID END', !newEndDate.isAfter(moment(maxDate)));
+    // If adjusted time period for event is within the itinerary's date range, move it
+    if (!newStartDate.isBefore(moment(minDate)) && !newEndDate.isAfter(moment(maxDate).add(1, 'days'))) {
+      activeEvent.startDate = newStartDate.toDate();
+      activeEvent.endDate = newEndDate.toDate();
+      this.props.actions.dragScheduleEvent(this.state.activeEvent.id, diff);
 
-    this.setState({
-      grabTime: moment(this.state.grabTime).add(diff, 'minutes'),
-      activeEvent
-    });
+      this.setState({
+        grabTime: moment(this.state.grabTime).add(diff, 'minutes'),
+        activeEvent
+      });
+    } else {
+      console.log('should fail');
+    }
   }
 
   renderBodyColumns() {

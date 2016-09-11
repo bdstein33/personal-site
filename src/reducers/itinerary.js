@@ -18,10 +18,14 @@ function createItinerarySchedule(itinerary) {
   itinerary.events.forEach(event => {
     const eventStartDate = moment(event.startDate).format('YYYY-MM-DD');
     const eventEndDate = moment(event.endDate).format('YYYY-MM-DD');
-    schedule[eventStartDate].push(event);
+    if (schedule[eventStartDate]) {
+      schedule[eventStartDate].push(event);
+    }
 
     if (eventEndDate !== eventStartDate) {
-      schedule[eventEndDate].push(event);
+      if (schedule[eventEndDate]) {
+        schedule[eventEndDate].push(event);
+      }
     }
   });
 

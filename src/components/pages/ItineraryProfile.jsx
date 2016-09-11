@@ -24,7 +24,7 @@ class ItineraryProfile extends React.Component {
         </C.Container>
 
         <C.Schedule
-          data={itinerary.schedule}
+          data={itinerary}
         />
       </C.FlexBox>
     );

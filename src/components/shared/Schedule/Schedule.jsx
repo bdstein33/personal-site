@@ -12,14 +12,17 @@ class Schedule extends React.Component {
 
 
   render() {
+    const {data} = this.props;
     return (
       <FlexBox
         className='schedule'
         flexDirection='column'
       >
-        <ScheduleHeader dates={Object.keys(this.props.data)}/>
+        <ScheduleHeader dates={Object.keys(data.schedule)}/>
         <ScheduleBody
-          data={this.props.data}
+          data={data.schedule}
+          minDate={data.startDate}
+          maxDate={data.endDate}
           onClickTimeSlot={this.props.onClickTimeSlot}
         />
       </FlexBox>
