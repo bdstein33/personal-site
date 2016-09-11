@@ -62,11 +62,8 @@ class ScheduleBody extends React.Component {
 
     const newStartDate = moment(activeEvent.startDate).add(diff, 'minutes');
     const newEndDate = moment(activeEvent.endDate).add(diff, 'minutes');
-    console.log('MAX', moment(maxDate).toDate());
-    console.log('CUR', newEndDate.toDate());
-    console.log('INVALID START', !newStartDate.isBefore(moment(minDate)));
-    console.log('INVALID END', !newEndDate.isAfter(moment(maxDate)));
     // If adjusted time period for event is within the itinerary's date range, move it
+    // Currently add one day to account for the end day being selectable (little janky)
     if (!newStartDate.isBefore(moment(minDate)) && !newEndDate.isAfter(moment(maxDate).add(1, 'days'))) {
       activeEvent.startDate = newStartDate.toDate();
       activeEvent.endDate = newEndDate.toDate();

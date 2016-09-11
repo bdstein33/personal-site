@@ -72,9 +72,12 @@ class ScheduleEvent extends React.Component {
           className='event-container'
         >
           <Text
-            fontSize={1}
+            fontSize={timeSlots === 1 ? 1 : 2}
             bold={true}
             className='schedule__event-label'
+            style={{
+              lineHeight: timeSlots === 1 ? 10 : null
+            }}
           >
             {data.name}
           </Text>

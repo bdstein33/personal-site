@@ -11,7 +11,7 @@ class ScheduleLeftColumn extends React.Component {
           key={`left-col-time-${hour}`}
         >
           <Text
-            fontSize={1}
+            fontSize={2}
             bold={true}
             className='schedule__left-column-label text-center'
           >
