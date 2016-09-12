@@ -130,6 +130,8 @@ class Reference extends React.Component {
           <C.Text fontSize={2}>Font Size 2</C.Text>
           <C.Text fontSize={3}>Font Size 3</C.Text>
           <C.Text fontSize={4}>Font Size 4</C.Text>
+          <C.Text fontSize={5}>Font Size 5</C.Text>
+          <C.Text fontSize={6}>Font Size 6</C.Text>
         </Section>
 
         <Section title='Grid'>

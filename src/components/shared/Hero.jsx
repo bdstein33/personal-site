@@ -19,7 +19,7 @@ class Link extends React.Component {
 
     return (
       <Container isFullWidth={true} centerContent={true} className='hero'>
-        <Text className='title' fontSize={4}>{title}</Text>
+        <Text className='title' fontSize={5}>{title}</Text>
         {children}
       </Container>
 

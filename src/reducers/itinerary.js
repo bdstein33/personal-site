@@ -31,7 +31,15 @@ function createItinerarySchedule(itinerary) {
 
   for (const key in schedule) {
     schedule[key] = schedule[key].sort((a, b) => {
-      return a.startDate - b.startDate;
+      const aDate = moment(a.startDate);
+      const bDate = moment(b.startDate);
+
+      if (aDate.isAfter(bDate)) {
+        return 1;
+      } else if (aDate.isBefore(bDate)) {
+        return -1;
+      }
+      return 0;
     });
   }
 
@@ -63,6 +71,7 @@ export default (state = initialState, action) => {
 
       itinerary.events[eventIndex] = updatedEvent;
       itinerary.schedule = createItinerarySchedule(itinerary);
+
       return Object.assign({}, state, {
         itineraryProfile: itinerary
       });

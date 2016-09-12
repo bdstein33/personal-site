@@ -45,7 +45,7 @@ class DataRow extends React.Component {
                 columns={column.columns}
                 key={`column-${column.name}-${data[column.name]}`}
               >
-                <Text fontSize={1}>{data[column.name]}</Text>
+                <Text fontSize={2}>{data[column.name]}</Text>
               </Column>
             );
           })

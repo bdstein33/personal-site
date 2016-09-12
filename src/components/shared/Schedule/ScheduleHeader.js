@@ -23,14 +23,14 @@ class ScheduleHeader extends React.Component {
             bold={true}
             className='schedule-header-label'
           >
-            {moment.weekdays(moment(date).day()).toUpperCase()}
+            {moment.weekdays(moment(date).day())}
           </Text>
           <Text
             fontSize={2}
             bold={true}
             className='schedule-header-label'
           >
-            {moment(date).format('MMM DD').toUpperCase()}
+            {moment(date).format('MMM DD')}
           </Text>
         </div>
       );
@@ -46,7 +46,7 @@ class ScheduleHeader extends React.Component {
           className='schedule-header-label'
           style={{lineHeight: '34px'}}
         >
-          TIME
+          Time
         </Text>
       </div>
     );
