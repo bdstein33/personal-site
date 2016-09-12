@@ -50,11 +50,17 @@ class ScheduleEvent extends React.Component {
     return output;
   }
 
+  formatName() {
+    if (this.props.timeSlots === 1) {
+      return `${this.props.data.name.slice(0, 12)}...`;
+    }
+    return this.props.data.name;
+  }
+
 
   render() {
     const {
       bottomBorder,
-      data,
       timeSlots
     } = this.props;
     return (
@@ -79,7 +85,7 @@ class ScheduleEvent extends React.Component {
               lineHeight: timeSlots === 1 ? 10 : null
             }}
           >
-            {data.name}
+            {this.formatName()}
           </Text>
         </FlexBox>
         <FlexBox
