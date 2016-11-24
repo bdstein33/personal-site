@@ -5,7 +5,7 @@ class Text extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
-    fontSize: React.PropTypes.oneOf([1, 2, 3, 4]),
+    fontSize: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
     bold: React.PropTypes.bool
   };
 
