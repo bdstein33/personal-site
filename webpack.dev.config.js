@@ -50,7 +50,7 @@ module.exports = {
     ]
   },
   postcss: [
-    autoprefixer({remove: false, browser: ['> 1%', 'IE >= 10', 'Firefox >= 37', 'Safari >= 6', 'Android >= 4.0']})
+    autoprefixer({remove: false, browsers: ['> 1%', 'IE >= 10', 'Firefox >= 37', 'Safari >= 6', 'Android >= 4.0']})
   ],
   sassLoader: {
     includePaths: [path.resolve(__dirname, 'node_modules/support-for/sass')]

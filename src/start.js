@@ -1,7 +1,5 @@
 require('localenv');
 
-// const path = require('path');
-
 require('babel-register')({
   only: [__dirname]
 });
