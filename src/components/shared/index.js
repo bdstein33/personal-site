@@ -14,3 +14,4 @@ export Right from './Right';
 export TopNav from './TopNav';
 export Text from './Text';
 export TextEditor from './TextEditor';
+export DrawingCanvas from './DrawingCanvas';
