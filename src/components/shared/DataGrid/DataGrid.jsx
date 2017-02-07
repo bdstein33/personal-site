@@ -36,7 +36,7 @@ class DataGrid extends React.Component {
       const columnData = columns[columnName];
       columnData.name = columnName;
       columnData.label = columnData.label ||
-                        columnName
+                         columnName
                           // insert a space before all caps
                           .replace(/([A-Z])/g, ' $1')
                           // uppercase the first character

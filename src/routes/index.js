@@ -12,6 +12,7 @@ import attractions from './attractions';
 import clients from './clients';
 import itineraries from './itineraries';
 import itineraryProfile from './itineraryProfile';
+import numberIdentifier from './numberIdentifier';
 import reference from './reference';
 import test from './test';
 
@@ -20,6 +21,7 @@ const routes = {
   clients,
   itineraries,
   itineraryProfile,
+  numberIdentifier,
   reference,
   test
 };

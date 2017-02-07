@@ -1,5 +1,3 @@
-'use strict';
-
 var path = require('path'),
   webpack = require('webpack'),
   autoprefixer = require('autoprefixer'),
@@ -59,6 +57,13 @@ module.exports = {
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify({
+        NODE_ENV: 'development',
+        API_HOST: 'http://localhost:8000',
+        TEST: 'AAAAAAA'
+      })
+    })
   ]
 };

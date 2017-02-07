@@ -43,6 +43,7 @@ class TopNav extends React.Component {
                 <TopNavLink href='/attractions' label='Attractions' />
                 <TopNavLink href='/reference' label='Reference' />
                 <TopNavLink href='/test' label='Test' />
+                <TopNavLink href='/number-identifier' label='Number Identifier' />
                 <TopNavLink label='Log Out' float='right' onClick={this.logOut} className='topnav-link-right'/>
               </div>
           }

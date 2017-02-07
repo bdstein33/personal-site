@@ -18,7 +18,6 @@ class TextEditor extends React.Component {
   }
 
   onChange = (value) => {
-    // console.log(value.toString('html'));
     this.setState({value});
     if (this.props.onChange) {
       // Send the changes up to the parent component as an HTML string.

@@ -2,17 +2,53 @@ import React from 'react';
 import classNames from 'classnames';
 import {autobind} from 'core-decorators';
 
+// class CanvasComponent extends React.Component {
+//   static propTypes = {
+//     imgData: React.PropTypes.object,
+//     id: React.PropTypes.number
+//   };
+
+//   componentDidMount() {
+//     this.updateCanvas();
+//   }
+
+//   updateCanvas() {
+//     const canvas = this.refs[`canvas${this.props.id}`];
+//     const preferredDimension = 20;
+//     canvas.width = canvas.height = preferredDimension;
+//     const ctx = canvas.getContext('2d');
+//     console.log(this.props.imgData);
+//     ctx.putImageData(this.props.imgData, 0, 0);
+//     console.log(canvas);
+//   }
+
+//   render() {
+//     return (
+//         <canvas ref={`canvas${this.props.id}`} />
+//     );
+//   }
+// }
+function dataURItoBlob(dataURI) {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/png'});
+}
+
 class DrawingCanvas extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
     style: React.PropTypes.object,
     width: React.PropTypes.number,
-    height: React.PropTypes.number
+    height: React.PropTypes.number,
+    onMouseUp: React.PropTypes.func
   };
 
   static defaultProps = {
-    width: 300,
-    height: 300
+    width: 200,
+    height: 200
   }
 
   constructor(props) {
@@ -27,8 +63,13 @@ class DrawingCanvas extends React.Component {
   }
 
   @autobind
-  mouseUp() {
+  mouseUp(e) {
     this.setState({mouseDown: false});
+
+    const canvas = e.target;
+    const image = canvas.toDataURL('image/png');
+
+    this.props.onMouseUp(JSON.stringify(image));
   }
 
   @autobind
@@ -76,16 +117,16 @@ class DrawingCanvas extends React.Component {
     } = this.props;
 
     return (
-      <canvas
-        className={classNames('drawing-canvas', className)}
-        width={width}
-        height={height}
-        style={{width, height}}
-        onMouseDown={this.mouseDown}
-        onMouseMove={this.draw}
-        onMouseUp={this.mouseUp}
-      >
-      </canvas>
+        <canvas
+          className={classNames('drawing-canvas', className)}
+          width={width}
+          height={height}
+          style={{width, height}}
+          onMouseDown={this.mouseDown}
+          onMouseMove={this.draw}
+          onMouseUp={this.mouseUp}
+        >
+        </canvas>
     );
   }
 }
