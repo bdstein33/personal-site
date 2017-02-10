@@ -10,6 +10,8 @@ require('babel-register')({
   ]
 });
 
+require('babel-polyfill');
+
 const Debug = require('debug');
 Debug.enable(process.env.DEBUG);
 

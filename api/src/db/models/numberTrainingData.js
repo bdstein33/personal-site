@@ -1,24 +1,15 @@
 export default (sequelize, DataTypes) => {
   const schema = {
     id: {
-      field: 'id',
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER
     },
-    firstName: {
-      field: 'first_name',
+    image: {
       type: DataTypes.STRING
     },
-    lastName: {
-      field: 'last_name',
-      type: DataTypes.STRING
-    },
-    email: {
-      type: DataTypes.STRING
-    },
-    password: {
-      type: DataTypes.STRING
+    value: {
+      type: DataTypes.INTEGER
     },
     createdAt: {
       field: 'created_at',
@@ -35,10 +26,9 @@ export default (sequelize, DataTypes) => {
   };
 
   const methods = {
-    tableName: 'Users',
-    timestamps: true,
-    paranoid: true
+    tableName: 'Number_Training_Data',
+    timestamps: true
   };
 
-  return sequelize.define('user', schema, methods);
+  return sequelize.define('numberTrainingData', schema, methods);
 };

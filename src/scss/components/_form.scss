@@ -26,8 +26,11 @@ input {
 .form-input-label {
   clear: both;
   margin-bottom: -5px;
-  padding-left: $spacing-main / 2;
   text-align: left;
+}
+
+.canvas-input-label {
+  margin-bottom: $spacing-main / 4;
 }
 
 .text-area {

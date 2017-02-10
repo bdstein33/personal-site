@@ -1,41 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import {autobind} from 'core-decorators';
-
-// class CanvasComponent extends React.Component {
-//   static propTypes = {
-//     imgData: React.PropTypes.object,
-//     id: React.PropTypes.number
-//   };
-
-//   componentDidMount() {
-//     this.updateCanvas();
-//   }
-
-//   updateCanvas() {
-//     const canvas = this.refs[`canvas${this.props.id}`];
-//     const preferredDimension = 20;
-//     canvas.width = canvas.height = preferredDimension;
-//     const ctx = canvas.getContext('2d');
-//     console.log(this.props.imgData);
-//     ctx.putImageData(this.props.imgData, 0, 0);
-//     console.log(canvas);
-//   }
-
-//   render() {
-//     return (
-//         <canvas ref={`canvas${this.props.id}`} />
-//     );
-//   }
-// }
-function dataURItoBlob(dataURI) {
-    var binary = atob(dataURI.split(',')[1]);
-    var array = [];
-    for(var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], {type: 'image/png'});
-}
+import Text from './Text';
 
 class DrawingCanvas extends React.Component {
   static propTypes = {
@@ -43,12 +9,13 @@ class DrawingCanvas extends React.Component {
     style: React.PropTypes.object,
     width: React.PropTypes.number,
     height: React.PropTypes.number,
-    onMouseUp: React.PropTypes.func
+    onMouseUp: React.PropTypes.func,
+    label: React.PropTypes.string
   };
 
   static defaultProps = {
-    width: 200,
-    height: 200
+    width: 100,
+    height: 100
   }
 
   constructor(props) {
@@ -67,9 +34,11 @@ class DrawingCanvas extends React.Component {
     this.setState({mouseDown: false});
 
     const canvas = e.target;
-    const image = canvas.toDataURL('image/png');
 
-    this.props.onMouseUp(JSON.stringify(image));
+    const ctx = canvas.getContext('2d');
+    const data = ctx.getImageData(0, 0, this.props.width, this.props.height).data;
+
+    this.props.onMouseUp(data);
   }
 
   @autobind
@@ -100,7 +69,7 @@ class DrawingCanvas extends React.Component {
       canvas.moveTo(this.state.prevX, this.state.prevY);
       canvas.lineTo(this.state.curX, this.state.curY);
       canvas.strokeStyle = 'black';
-      canvas.lineWidth = 5;
+      canvas.lineWidth = 3;
       canvas.stroke();
       canvas.closePath();
     }
@@ -113,20 +82,28 @@ class DrawingCanvas extends React.Component {
       className,
       width,
       height,
+      label,
       ...otherProps
     } = this.props;
 
     return (
-        <canvas
-          className={classNames('drawing-canvas', className)}
-          width={width}
-          height={height}
-          style={{width, height}}
-          onMouseDown={this.mouseDown}
-          onMouseMove={this.draw}
-          onMouseUp={this.mouseUp}
-        >
-        </canvas>
+        <div>
+          <div>
+          {label && <Text className='canvas-input-label'>{label}</Text>}
+          </div>
+          <div>
+            <canvas
+              className={classNames('drawing-canvas', className)}
+              width={width}
+              height={height}
+              style={{width, height}}
+              onMouseDown={this.mouseDown}
+              onMouseMove={this.draw}
+              onMouseUp={this.mouseUp}
+            >
+          </canvas>
+          </div>
+        </div>
     );
   }
 }
