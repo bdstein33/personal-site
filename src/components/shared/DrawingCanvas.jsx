@@ -10,7 +10,8 @@ class DrawingCanvas extends React.Component {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
     onMouseUp: React.PropTypes.func,
-    label: React.PropTypes.string
+    label: React.PropTypes.string,
+    refName: React.PropTypes.string
   };
 
   static defaultProps = {
@@ -39,6 +40,10 @@ class DrawingCanvas extends React.Component {
     const data = ctx.getImageData(0, 0, this.props.width, this.props.height).data;
 
     this.props.onMouseUp(data);
+  }
+
+  test() {
+    console.log('HIII');
   }
 
   @autobind
@@ -83,6 +88,7 @@ class DrawingCanvas extends React.Component {
       width,
       height,
       label,
+      refName,
       ...otherProps
     } = this.props;
 
@@ -100,6 +106,7 @@ class DrawingCanvas extends React.Component {
               onMouseDown={this.mouseDown}
               onMouseMove={this.draw}
               onMouseUp={this.mouseUp}
+              ref={refName || 'drawingCanvas'}
             >
           </canvas>
           </div>

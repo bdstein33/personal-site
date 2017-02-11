@@ -30,7 +30,12 @@ class NumberIdentifier extends React.Component {
 
   @autobind
   submitNumber(data) {
-    console.log(data);
+    // Clear the canvas
+    const canvas = this.refs.test.refs.drawingCanvas.getContext('2d');
+    canvas.clearRect(0, 0, 100, 100);
+    canvas.beginPath();
+    canvas.save();
+
     this.props.actions.submitNumberImage({
       image: JSON.stringify(Array.prototype.slice.call(formatBitmapData(this.state.image))),
       value: parseInt(data.number, 10)
@@ -45,6 +50,7 @@ class NumberIdentifier extends React.Component {
             <C.DrawingCanvas
               label='Draw Number 0 - 9'
               onMouseUp={this.storeImage}
+              ref='test'
             />
           </div>
           <C.TextInput
@@ -54,6 +60,7 @@ class NumberIdentifier extends React.Component {
             type='number'
             min='0'
             max='9'
+            required={true}
           />
           <C.Submit
             value='SUBMIT'

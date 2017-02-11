@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import {
-  DBQuery,
   isValid,
 } from '../../util';
 

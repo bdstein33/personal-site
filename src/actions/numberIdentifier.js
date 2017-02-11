@@ -4,7 +4,7 @@ export default {
   submitNumberImage: data => {
     return actionCreator('SUBMIT_NUMBER_IMAGE', data, {
       request: {
-        url: 'num_identifier',
+        url: 'http://localhost:5000/api/num_identifier',
         method: 'post'
       }
     });
