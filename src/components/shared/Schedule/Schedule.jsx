@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import ScheduleBody from './ScheduleBody';
 import ScheduleHeader from './ScheduleHeader';
 import FlexBox from '../FlexBox';
@@ -21,8 +23,8 @@ class Schedule extends React.Component {
         <ScheduleHeader dates={Object.keys(data.schedule)}/>
         <ScheduleBody
           data={data.schedule}
-          minDate={data.startDate}
-          maxDate={data.endDate}
+          minDate={moment(data.startDate)}
+          maxDate={moment(data.endDate)}
           onClickTimeSlot={this.props.onClickTimeSlot}
         />
       </FlexBox>

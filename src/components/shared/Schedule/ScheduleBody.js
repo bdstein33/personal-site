@@ -15,8 +15,8 @@ class ScheduleBody extends React.Component {
     actions: React.PropTypes.object.isRequired,
 
     data: React.PropTypes.object,
-    minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
     onClickEvent: React.PropTypes.func,
     onClickTimeSlot: React.PropTypes.func
   }
@@ -62,9 +62,9 @@ class ScheduleBody extends React.Component {
 
     const newStartDate = moment(activeEvent.startDate).add(diff, 'minutes');
     const newEndDate = moment(activeEvent.endDate).add(diff, 'minutes');
+
     // If adjusted time period for event is within the itinerary's date range, move it
-    // Currently add one day to account for the end day being selectable (little janky)
-    if (!newStartDate.isBefore(moment(minDate)) && !newEndDate.isAfter(moment(maxDate).add(1, 'days'))) {
+    if (!newStartDate.isBefore(minDate) && !newEndDate.isAfter(maxDate)) {
       activeEvent.startDate = newStartDate.toDate();
       activeEvent.endDate = newEndDate.toDate();
       this.props.actions.dragScheduleEvent(this.state.activeEvent.id, diff);
@@ -73,8 +73,6 @@ class ScheduleBody extends React.Component {
         grabTime: moment(this.state.grabTime).add(diff, 'minutes'),
         activeEvent
       });
-    } else {
-      console.log('should fail');
     }
   }
 
@@ -84,6 +82,8 @@ class ScheduleBody extends React.Component {
         <ScheduleColumn
           data={this.props.data[date]}
           date={date}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
           key={`schedule-column-${date}`}
           onClickEvent={this.props.onClickEvent}
           onClickTimeSlot={this.props.onClickTimeSlot}

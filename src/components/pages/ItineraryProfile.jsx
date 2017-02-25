@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import storeConnect from '../addons/storeConnect';
 
@@ -11,6 +12,8 @@ class ItineraryProfile extends React.Component {
 
   render() {
     const {itinerary} = this.props;
+    const startDate = moment(itinerary.startDate).format('MM/DD/YYYY HH:mm:ss');
+    const endDate = moment(itinerary.endDate).format('MM/DD/YYYY HH:mm:ss');
     return (
       <C.FlexBox
         flexDirection='column'
@@ -19,7 +22,8 @@ class ItineraryProfile extends React.Component {
       >
         <C.Container isFullWidth={true}>
           <C.Row>
-            <C.Text fontSize={4} className='page-header'>{itinerary.name}</C.Text>
+            <C.Text fontSize={4} className='page-header'>{itinerary.name} ({startDate} to {endDate})</C.Text>
+            <C.Text fontSize={4} className='page-header'>{itinerary.startAt}</C.Text>
           </C.Row>
         </C.Container>
 

@@ -9,6 +9,8 @@ class ScheduleColumn extends React.Component {
   static propTypes = {
     data: React.PropTypes.array,
     date: React.PropTypes.string,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
     onMouseDownTimeSlot: React.PropTypes.func,
     onMouseUpTimeSlot: React.PropTypes.func,
     onMouseEnterTimeSlot: React.PropTypes.func
@@ -59,6 +61,7 @@ class ScheduleColumn extends React.Component {
         output.push(
           <ScheduleTimeSlot
             date={date.toDate()}
+            isOutOfRange={date.isBefore(this.props.minDate) || !this.props.maxDate.isAfter(date)}
             bottomBorder={date.get('minute') === 45}
             onMouseDown={this.props.onMouseDownTimeSlot}
             onMouseUp={this.props.onMouseUpTimeSlot}

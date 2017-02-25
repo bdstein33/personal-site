@@ -7,6 +7,7 @@ class ScheduleTimeSlot extends React.Component {
     bottomBorder: React.PropTypes.bool,
     date: React.PropTypes.object,
     data: React.PropTypes.object,
+    isOutOfRange: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func
@@ -36,6 +37,7 @@ class ScheduleTimeSlot extends React.Component {
       <div
         className={classNames(
           'schedule__time_slot',
+          this.props.isOutOfRange && 'schedule__out_of_range',
           this.props.bottomBorder && 'schedule__border-bottom'
         )}
         onMouseDown={this.handleMouseDown}

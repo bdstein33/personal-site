@@ -46,7 +46,7 @@ class NewItineraryModal extends React.Component {
             label='Notes'
             name='note'
             placeholder='Notes'
-            rows={8}
+            rows={20}
           />
           <C.Submit value='CREATE' />
         </C.Form>

@@ -27,6 +27,14 @@ class ScheduleEvent extends React.Component {
     this.props.actions.showModal(<EditEventModal />, 'Edit');
   }
 
+  // TODO: FIX WITH CSS
+  formatName() {
+    if (this.props.timeSlots === 1) {
+      return `${this.props.data.name.slice(0, 12)}...`;
+    }
+    return this.props.data.name;
+  }
+
   renderDragHandlers() {
     const output = [];
     const date = moment(this.props.data.startDate);
@@ -49,14 +57,6 @@ class ScheduleEvent extends React.Component {
 
     return output;
   }
-
-  formatName() {
-    if (this.props.timeSlots === 1) {
-      return `${this.props.data.name.slice(0, 12)}...`;
-    }
-    return this.props.data.name;
-  }
-
 
   render() {
     const {

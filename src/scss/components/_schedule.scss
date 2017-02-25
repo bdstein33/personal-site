@@ -70,6 +70,10 @@ $event-blue-text: #546C92;
   height: $timeslot-height;
 }
 
+.schedule__out_of_range {
+  background-color: $gray-4;
+}
+
 .schedule__event {
   background-color: $event-blue-background;
   box-sizing: border-box;

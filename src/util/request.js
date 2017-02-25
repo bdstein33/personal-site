@@ -5,13 +5,8 @@ export default (endpoint, data = {}) => {
     method: endpoint.method,
     url: endpoint.url.indexOf('http') !== -1
           ? endpoint.url
-          : `${process.env.API_HOST}/api/${endpoint.url}`,
-    headers: {
-      'Content-Type': 'application/json'
-    }
+          : `${process.env.API_HOST}/api/${endpoint.url}`
   };
-
-  console.log(requestObj);
 
   if (endpoint.headers) {
     requestObj.headers = endpoint.headers;
