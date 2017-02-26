@@ -68,6 +68,8 @@ export default {
       scope: null
     });
 
+    console.log(model);
+
     return new Promise(resolve => {
       if (options.scope) {
         resolve(context.db[model].scope(queryOptions.scope).findAll(_.omit(queryOptions, 'scope', 'sequelizeObject')));

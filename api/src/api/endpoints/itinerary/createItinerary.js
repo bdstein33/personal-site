@@ -14,10 +14,6 @@ export default (context, input) => {
     ['name', 'userId', 'startDate', 'endDate'],
     ['id']
   )
-    .then(() => {
-      return context.db.itinerary.create(_.omit(input, ['note']));
-    })
-    .then(createdItinerary => {
-      return plain(createdItinerary);
-    });
+    .then(() => context.db.itinerary.create(_.omit(input, ['note'])))
+    .then(createdItinerary => plain(createdItinerary));
 };

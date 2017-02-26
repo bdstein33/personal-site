@@ -12,8 +12,8 @@ class ItineraryProfile extends React.Component {
 
   render() {
     const {itinerary} = this.props;
-    const startDate = moment(itinerary.startDate).format('MM/DD/YYYY HH:mm:ss');
-    const endDate = moment(itinerary.endDate).format('MM/DD/YYYY HH:mm:ss');
+    const startDate = moment(itinerary.startDate).format('MMMM DD, YYYY');
+    const endDate = moment(itinerary.endDate).format('MMMM DD, YYYY');
     return (
       <C.FlexBox
         flexDirection='column'

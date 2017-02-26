@@ -1,5 +1,6 @@
 import React from 'react';
 import {autobind} from 'core-decorators';
+import moment from 'moment';
 
 import storeConnect from '../../addons/storeConnect';
 import {itineraryActions} from '../../../actions';
@@ -16,7 +17,17 @@ class NewItineraryModal extends React.Component {
 
   @autobind
   createItinerary(data) {
-    return this.props.actions.createItinerary({...data, userId: this.props.user.id});
+    const output = {...data};
+    output.startDate = new Date(moment(output.startDate).format('YYYY-MM-DD HH:mm:ss'));
+    output.endDate = new Date(
+      moment(output.endDate)
+      .add('hours', 23)
+      .add('minutes', 59)
+      .add('second', 59)
+      .format('YYYY-MM-DD HH:mm:ss')
+    );
+
+    return this.props.actions.createItinerary({...output, userId: this.props.user.id});
   }
 
   render() {
