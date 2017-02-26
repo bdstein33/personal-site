@@ -28,14 +28,7 @@ export default (sequelize, DataTypes) => {
 
   const methods = {
     tableName: 'Itinerary_Events',
-    timestamps: false,
-    classMethods: {
-      associate: models => {
-        models.itineraryEvent.belongsTo(models.attraction, {
-          foreignKey: 'attractionId'
-        });
-      }
-    }
+    timestamps: false
   };
 
   return sequelize.define('itineraryEvent', schema, methods);
