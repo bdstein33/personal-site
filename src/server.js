@@ -1,13 +1,10 @@
 import Debug from 'debug';
 import path from 'path';
 import webpack from 'webpack';
-import webpackConfig from '../webpack.dev.config.js';
 
 // Server Configuration
 import express from 'express';
 import bodyParser from 'body-parser';
-// import morgan from 'morgan';
-
 
 const debug = Debug('Server'),
   server = express(),
@@ -17,6 +14,7 @@ const debug = Debug('Server'),
 WEBPACK AND HMR
 ******************************/
 if (process.env.NODE_ENV === 'development') {
+  const webpackConfig = require('../webpack.dev.config.js');
   const compiler = webpack(webpackConfig);
 
   server.use(require('webpack-dev-middleware')(compiler, {
@@ -26,6 +24,15 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   server.use(require('webpack-hot-middleware')(compiler));
+} else if (process.env.NODE_ENV === 'production') {
+  const webpackConfig = require('../webpack.prod.config.js');
+  const compiler = webpack(webpackConfig);
+
+  server.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: false,
+    quiet: false,
+    publicPath: webpackConfig.output.publicPath
+  }));
 }
 
 /******************************
@@ -38,7 +45,7 @@ server.use('/public', express.static(path.join(__dirname, '../build')));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: false}));
 
-// Allow Cors
+// Allow CORS
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -46,9 +53,6 @@ server.use((req, res, next) => {
 });
 
 
-/******************************
-ISOMORPHIC RENDERING
-******************************/
 server.get('*', (req, res) => {
   res.sendFile(`${__dirname}/index.html`);
 });

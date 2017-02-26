@@ -8,8 +8,6 @@ import Index from '../components/pages/Index';
 import userActions from '../actions/user';
 
 // Routes
-import attractions from './attractions';
-import clients from './clients';
 import itineraries from './itineraries';
 import itineraryProfile from './itineraryProfile';
 import numberIdentifier from './numberIdentifier';
@@ -17,8 +15,6 @@ import reference from './reference';
 import test from './test';
 
 const routes = {
-  attractions,
-  clients,
   itineraries,
   itineraryProfile,
   numberIdentifier,
@@ -81,7 +77,6 @@ export default store => {
             <Route
               {...routeConfig}
               key={`route-${routeConfig.path}`}
-              // onEnter={() => routeConfig.onEnter(store)}
             />
           )
       }

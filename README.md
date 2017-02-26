@@ -10,5 +10,4 @@ Schedule
 - Set up endpoint testing
 
 
-
 - Add disabled prop to buttons and disable NEW QUESTION BUTTON if there are no sections

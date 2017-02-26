@@ -9,7 +9,6 @@ module.exports = {
   entry: {
     app: [
       'eventsource-polyfill', // necessary for hot reloading with IE
-      'webpack-hot-middleware/client',
       'babel-polyfill',
       './src/client.js',
       './src/scss/main.scss'
@@ -31,11 +30,7 @@ module.exports = {
         loader: 'babel',
         include: [
           path.resolve(__dirname, './src')
-        ],
-        query: {
-          presets: ['react-hmre'],
-          cacheDirectory: true
-        }
+        ]
       }
     ]
   },
@@ -48,7 +43,6 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   plugins: [
     new ProgressBarPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({
