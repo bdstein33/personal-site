@@ -2,7 +2,6 @@ var path = require('path'),
   webpack = require('webpack'),
   autoprefixer = require('autoprefixer'),
   ProgressBarPlugin = require('progress-bar-webpack-plugin');
-
 module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
