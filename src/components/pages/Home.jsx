@@ -2,6 +2,8 @@ import React from 'react';
 
 import storeConnect from '../addons/storeConnect';
 
+import * as C from '../shared';
+
 class Home extends React.Component {
   static propTypes = {
     application: React.PropTypes.object
@@ -12,7 +14,13 @@ class Home extends React.Component {
 
     return (
       <div>
-       {`Welcome ${user.firstName} ${user.lastName}`}
+        <C.Hero title='LANDING PAGE'/>
+        <C.Container
+          centerContent={true}
+          className='add-margin-top'
+        >
+          {`Welcome ${user.firstName} ${user.lastName}`}
+        </C.Container>
       </div>
     );
   }

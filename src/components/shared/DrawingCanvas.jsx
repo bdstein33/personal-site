@@ -42,10 +42,6 @@ class DrawingCanvas extends React.Component {
     this.props.onMouseUp(data);
   }
 
-  test() {
-    console.log('HIII');
-  }
-
   @autobind
   mouseDown(e) {
     const {top, left} = e.target.getBoundingClientRect();
@@ -74,7 +70,7 @@ class DrawingCanvas extends React.Component {
       canvas.moveTo(this.state.prevX, this.state.prevY);
       canvas.lineTo(this.state.curX, this.state.curY);
       canvas.strokeStyle = 'black';
-      canvas.lineWidth = 3;
+      canvas.lineWidth = 10;
       canvas.stroke();
       canvas.closePath();
     }

@@ -49,16 +49,13 @@ class Button extends React.Component {
     const {
       text,
       children,
-      className,
-      bStyle,
-      bColor,
       ...otherProps
     } = this.props;
 
     return (
       <div
-        className={this.generateClassName()}
         {...otherProps}
+        className={this.generateClassName()}
       >
         {children || text.toUpperCase()}
       </div>

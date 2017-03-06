@@ -1,11 +1,11 @@
 import React from 'react';
 
+import * as C from '../shared';
+
 class Landing extends React.Component {
   render() {
     return (
-      <div>
-       LANDING PAGE
-      </div>
+      <C.Hero title='LANDING PAGE' />
     );
   }
 }

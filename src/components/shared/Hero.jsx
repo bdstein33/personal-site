@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+
 import Text from './Text';
 import Container from './layout/Container';
 
@@ -18,7 +20,12 @@ class Link extends React.Component {
     } = this.props;
 
     return (
-      <Container isFullWidth={true} centerContent={true} className='hero'>
+      <Container
+        isFullWidth={true}
+        centerContent={true}
+        className={classNames('hero', className)}
+        {...otherProps}
+      >
         <Text className='title' fontSize={5}>{title}</Text>
         {children}
       </Container>

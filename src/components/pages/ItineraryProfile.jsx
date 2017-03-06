@@ -22,8 +22,7 @@ class ItineraryProfile extends React.Component {
       >
         <C.Container isFullWidth={true}>
           <C.Row>
-            <C.Text fontSize={4} className='page-header'>{itinerary.name} ({startDate} to {endDate})</C.Text>
-            <C.Text fontSize={4} className='page-header'>{itinerary.startAt}</C.Text>
+            <C.Hero title={`${itinerary.name} (${startDate} to ${endDate})`}/>
           </C.Row>
         </C.Container>
 
