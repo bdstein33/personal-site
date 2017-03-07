@@ -6,7 +6,6 @@ import storeConnect from '../addons/storeConnect';
 import {numberIdentifierActions} from '../../actions';
 
 import * as C from '../shared';
-import PredictionRow from './NumberIdentifier/PredictionRow';
 
 const formatBitmapData = data => data
                                   .filter((n, i) => (i + 1) % 4 === 0)
@@ -22,7 +21,8 @@ class NumberIdentifier extends React.Component {
   static propTypes = {
     application: React.PropTypes.object,
     actions: React.PropTypes.object,
-    prediction: React.PropTypes.number
+    prediction: React.PropTypes.number,
+    location: React.PropTypes.object
   }
 
   constructor(props) {
@@ -95,15 +95,19 @@ class NumberIdentifier extends React.Component {
                   height={this.canvasSize}
                   ref='numberCanvas'
                 />
-                <C.TextInput
-                  label='Number'
-                  name='number'
-                  style={{width: this.canvasSize}}
-                  type='number'
-                  min='0'
-                  max='9'
-                  required={true}
-                />
+                {
+                  this.props.location.query.train &&
+                  <C.TextInput
+                    label='Number'
+                    name='number'
+                    style={{width: this.canvasSize}}
+                    type='number'
+                    min='0'
+                    max='9'
+                    required={true}
+                  />
+                }
+
                 <C.Submit
                   value='SUBMIT'
                   style={{width: this.canvasSize}}
@@ -111,10 +115,16 @@ class NumberIdentifier extends React.Component {
               </C.Form>
               {
                 isNumber(this.props.prediction) &&
-                <PredictionRow
-                  prediction={this.props.prediction}
-                  imageUrl={this.state.imageArray[this.state.imageArray.length - 1]}
-                />
+                <div>
+                  <img
+                    src={this.state.imageArray[this.state.imageArray.length - 1]}
+                    style={{border: '1px solid black'}}
+                    className='add-margin-bottom'
+                  />
+                  <C.Text fontSize={5}>
+                    Is it {this.props.prediction}?
+                  </C.Text>
+                </div>
               }
             </C.Column>
             <C.Column columns={8}>
