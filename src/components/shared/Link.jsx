@@ -19,7 +19,7 @@ class Link extends React.Component {
     } = this.props;
 
     if (/^https?/.test(href)) {
-      return <a href={href} {...otherProps}></a>;
+      return <a href={href} {...otherProps}>{children}</a>;
     } else if (href) {
       return <RouterLink to={href} {...otherProps}>{children}</RouterLink>;
     }

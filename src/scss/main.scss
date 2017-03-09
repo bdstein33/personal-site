@@ -255,7 +255,6 @@ html,
       border-color: $yellow-2;
       color: $yellow-2;
     }
-
   }
 }
 
@@ -281,4 +280,8 @@ html,
   word-wrap: normal;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $teal-1;
 }
