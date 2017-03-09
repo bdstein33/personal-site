@@ -131,7 +131,7 @@ class NumberIdentifier extends React.Component {
               <C.Text fontSize={7}>How It Works</C.Text>
               <C.Text fontSize={6} style={{marginTop: 8}}>User Input</C.Text>
               <C.Text fontSize={4}>
-                User draws a number in the 100x100 pixel canvas to the left.
+                User draws a number in the 250x250 pixel canvas to the left.
                 I reize the canvas drawing into a 20x20 pixel image, then format the image bitmap
                 into a 20x20 array where coloered pixels are denoted by 1 and all other indices are 0.
                 This array serves as the input to my identification algorithm
