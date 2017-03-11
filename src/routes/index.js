@@ -48,6 +48,8 @@ export default store => {
     callback();
   }
 
+  // If routes require auth, wrap them in a parent route that ensures they
+  // are only accessible if user is logged in
   return (
     <Route path='/' component={App} onEnter={getUserData}>
       <IndexRoute component={Index}/>
@@ -73,12 +75,21 @@ export default store => {
       </Route>
       {
         filter(routes, data => !data.requireAuth)
-          .map(routeConfig =>
-            <Route
+          .map(routeConfig => {
+            return <Route
               {...routeConfig}
               key={`route-${routeConfig.path}`}
+              onEnter={(nextState, replace, callback) => {
+                if (routeConfig.action) {
+                  return routeConfig.action(store, nextState)
+                    .then(() => {
+                      callback();
+                    });
+                }
+                callback();
+              }}
             />
-          )
+          })
       }
     </Route>
   );

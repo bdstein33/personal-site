@@ -17,7 +17,6 @@ export default controllerName => {
         req.body
       ),
       sanatizedInput = sanitizeInput(_.cloneDeep(input));
-
     return new Promise(resolve => {
       resolve(db.sequelize.transaction(transaction => {
         context.transaction = transaction;

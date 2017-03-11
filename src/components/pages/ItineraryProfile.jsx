@@ -20,15 +20,8 @@ class ItineraryProfile extends React.Component {
         style={{width: '100%', height: '100%'}}
         className='page-container'
       >
-        <C.Container isFullWidth={true}>
-          <C.Row>
-            <C.Hero title={`${itinerary.name} (${startDate} to ${endDate})`}/>
-          </C.Row>
-        </C.Container>
-
-        <C.Schedule
-          data={itinerary}
-        />
+        <C.Hero title={`${itinerary.name} (${startDate} to ${endDate})`}/>
+        <C.Schedule data={itinerary}/>
       </C.FlexBox>
     );
   }

@@ -24,7 +24,7 @@ export default {
    * @param  {Object} options (scope, where, limit, etc.)
    * @return {Promise.<Object[]>}
    */
-  getOne: (context, model, options) => {
+  getOne: (context, model, options = {}) => {
     const queryOptions = _.defaults(options, {
       transaction: context.transaction,
       sequelizeObject: false,
@@ -60,7 +60,7 @@ export default {
    * @param  {Object} options (scope, where, limit, etc.)
    * @return {Promise.<Array[]>}
    */
-  getAll: (context, model, options) => {
+  getAll: (context, model, options = {}) => {
     const queryOptions = _.defaults(options, {
       transaction: context.transaction,
       sequelizeObject: false,
@@ -68,7 +68,6 @@ export default {
       scope: null
     });
 
-    console.log(model);
 
     return new Promise(resolve => {
       if (options.scope) {

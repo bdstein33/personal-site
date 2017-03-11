@@ -6,6 +6,6 @@ export default {
   component: Itineraries,
   requireAuth: false,
   action: store => {
-    return getItineraries({userId: store.getState().application.user.id})(store.dispatch);
+    return getItineraries({})(store.dispatch);
   }
 };

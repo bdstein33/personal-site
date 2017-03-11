@@ -49,6 +49,8 @@ class Button extends React.Component {
     const {
       text,
       children,
+      bColor,
+      bStyle,
       ...otherProps
     } = this.props;
 
