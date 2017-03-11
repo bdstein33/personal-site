@@ -24,10 +24,7 @@ export default (context, input) => {
           {
             where: {
               itineraryId: input.id
-            },
-            include: [{
-              model: context.db.attraction
-            }]
+            }
           }
         )
       ]);
@@ -35,7 +32,6 @@ export default (context, input) => {
     .then(([itinerary, itineraryEvents]) => {
       itinerary.events = itineraryEvents.map(event => {
         return {
-          ..._.omit(event, ['attraction']),
           ..._.omit(event.attraction, [
             'id',
             'createdAt',
