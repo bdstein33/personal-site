@@ -31,7 +31,7 @@ class TopNav extends React.Component {
         <Container isFullWidth={true} padding={false}>
           <TopNavLink href='/' label={'Ben\'s Site'} className='logo'/>
           <TopNavLink href='/number-identifier' label='Number Identifier'/>
-          <TopNavLink href='/itineraries' label='Itineraries' />
+          <TopNavLink href='/itineraries/1' label='Schedule' />
           <TopNavLink href='/reference' label='Reference Components'/>
           {
             !loggedIn

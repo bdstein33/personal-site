@@ -129,6 +129,7 @@ class NumberIdentifier extends React.Component {
             </C.Column>
             <C.Column columns={8}>
               <C.Text fontSize={7}>How It Works</C.Text>
+              <C.Link href='https://github.com/bdstein33/num_identifier'>View Code on Github</C.Link>
               <C.Text fontSize={6} style={{marginTop: 8}}>User Input</C.Text>
               <C.Text fontSize={4}>
                 User draws a number in the 250x250 pixel canvas to the left.
