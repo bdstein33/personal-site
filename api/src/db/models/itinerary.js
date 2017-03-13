@@ -40,15 +40,7 @@ export default (sequelize, DataTypes) => {
   const methods = {
     tableName: 'Itineraries',
     timestamps: true,
-    paranoid: true,
-    classMethods: {
-      associate: models => {
-        models.itinerary.belongsToMany(models.attraction, {
-          through: models.itineraryEvent,
-          foreignKey: 'itineraryId'
-        });
-      }
-    }
+    paranoid: true
   };
 
   return sequelize.define('itinerary', schema, methods);
