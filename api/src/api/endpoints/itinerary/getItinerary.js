@@ -30,17 +30,7 @@ export default (context, input) => {
       ]);
     })
     .then(([itinerary, itineraryEvents]) => {
-      itinerary.events = itineraryEvents.map(event => {
-        return {
-          ..._.omit(event.attraction, [
-            'id',
-            'createdAt',
-            'updatedAt',
-            'deletedAt'
-          ])
-        };
-      });
-
-      return _.omit(itinerary, 'attractions');
+      itinerary.events = itineraryEvents
+      return itinerary;
     });
 };

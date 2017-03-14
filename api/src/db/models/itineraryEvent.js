@@ -9,6 +9,9 @@ export default (sequelize, DataTypes) => {
       field: 'itinerary_id',
       type: DataTypes.INTEGER
     },
+    name: {
+      type: DataTypes.STRING
+    },
     startDate: {
       field: 'start_date',
       type: DataTypes.DATE
