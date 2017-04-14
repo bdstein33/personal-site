@@ -6,12 +6,10 @@ class Landing extends React.Component {
   render() {
     return (
       <div>
-        <C.Hero title='LANDING PAGE'  className='add-margin-bottom'/>
+        <C.Hero title='REDUX STARTER REPO'  className='add-margin-bottom'/>
         <C.Container centerContent={true}>
-          <C.Text fontSize={6}>
-            Redux Start Repo
-          </C.Text>
-            <C.Link href='https://github.com/bdstein33/personal-site'>
+
+            <C.Link href='https://github.com/bdstein33/personal-site' fontSize={6}>
               Check out the code on Github
             </C.Link>
         </C.Container>
