@@ -54,24 +54,24 @@ class NumberIdentifier extends React.Component {
     context.beginPath();
     context.save();
 
-    // Save scaled down version of original canvas
-    context.drawImage(image, 0, 0, 20, 20);
-    context.save();
+    image.onload = () => {
+      // Save scaled down version of original canvas
+      context.drawImage(image, 0, 0, 20, 20);
+      context.save();
 
-    // Get image data of scaled down image
-    let smallImageData = context.getImageData(0, 0, 20, 20).data;
+      // Get image data of scaled down image
+      let smallImageData = context.getImageData(0, 0, 20, 20).data;
+      smallImageData = Array.prototype.slice.call(formatBitmapData(smallImageData));
 
-    smallImageData = Array.prototype.slice.call(formatBitmapData(smallImageData));
-
-    // Clear canvas again
-    context.clearRect(0, 0, this.canvasSize, this.canvasSize);
-    context.beginPath();
-    context.save();
-
-    this.props.actions.submitNumberImage({
-      image: JSON.stringify(smallImageData),
-      value: parseInt(data.number, 10)
-    });
+      // Clear canvas again
+      context.clearRect(0, 0, this.canvasSize, this.canvasSize);
+      context.beginPath();
+      context.save();
+      this.props.actions.submitNumberImage({
+        image: JSON.stringify(smallImageData),
+        value: parseInt(data.number, 10)
+      });
+    };
   }
 
   @autobind

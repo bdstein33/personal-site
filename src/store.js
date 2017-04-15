@@ -21,7 +21,7 @@ export default (history, initialState) => {
       applyMiddleware(
         routerMiddleware(history), // routing
         thunk, // async function actions
-        logger // outputs action data
+        logger // outputs action data (DEBUG=DISPATCH)
       )
     )
   );
