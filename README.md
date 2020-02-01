@@ -6,7 +6,7 @@ Schedule
 - pull down events to extend time
 - handle timezone
 
-- Build models in massdrop models
+- Build models
 - Set up endpoint testing
 
 
